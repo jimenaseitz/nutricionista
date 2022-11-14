@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2022 a las 01:45:49
+-- Tiempo de generación: 14-11-2022 a las 02:03:59
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `nutricionista`
 --
-CREATE DATABASE IF NOT EXISTS `nutricionista` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `nutricionista`;
 
 -- --------------------------------------------------------
 
@@ -64,6 +62,13 @@ CREATE TABLE `itemcomidas` (
   `idComida` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `itemcomidas`
+--
+
+INSERT INTO `itemcomidas` (`idItemComida`, `idDieta`, `idComida`) VALUES
+(1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +86,15 @@ CREATE TABLE `paciente` (
   `pesoActual` double NOT NULL,
   `fechaNacimiento` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `paciente`
+--
+
+INSERT INTO `paciente` (`idPaciente`, `dni`, `apellido`, `nombre`, `domicilio`, `telefono`, `altura`, `pesoActual`, `fechaNacimiento`) VALUES
+(1, 34429045, 'Seitz', 'Jimena', 'villa del carmen', 358482879, 1.7, 71, '1990-02-07'),
+(2, 27377277, 'Pujato', 'Pablo', 'dna uejnn', 1234566, 1.8, 78, '1992-11-04'),
+(3, 47373772, 'sanchez', 'tomas', 'concaran', 1242134, 1.7, 75, '2022-11-02');
 
 --
 -- Índices para tablas volcadas
@@ -122,25 +136,25 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de la tabla `comida`
 --
 ALTER TABLE `comida`
-  MODIFY `idComida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idComida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  MODIFY `idDieta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idDieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `itemcomidas`
 --
 ALTER TABLE `itemcomidas`
-  MODIFY `idItemComida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idItemComida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
