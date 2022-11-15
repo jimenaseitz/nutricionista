@@ -21,6 +21,7 @@ public class Paciente {
     private int telefono;
     private double pesoActual;
     private double altura;
+    private boolean estado;
 
     public Paciente() {
     }

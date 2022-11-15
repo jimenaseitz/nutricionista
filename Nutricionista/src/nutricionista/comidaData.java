@@ -9,6 +9,6 @@ package nutricionista;
  *
  * @author Tommy
  */
-public class comidasData {
+public class comidaData {
     
 }

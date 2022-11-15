@@ -6,26 +6,29 @@
 package Entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author jimes
  */
 public class Dieta {
-    private int idDieta;
-    private int idPaciente;
+    private int id_Dieta;
+    private int id_Paciente;
     private LocalDate inicioDieta;
     private LocalDate finDieta;
     private double pesoBuscado;
     private int limiteCalorico;
     private double pesoInicial;
+    private ArrayList <Comida> listacom;
+    
 
     public Dieta() {
     }
 
     public Dieta(int idDieta, int idPaciente, LocalDate inicioDieta, LocalDate finDieta, double pesoBuscado, int limiteCalorico, double pesoInicial) {
-        this.idDieta = idDieta;
-        this.idPaciente = idPaciente;
+        this.id_Dieta = idDieta;
+        this.id_Paciente = idPaciente;
         this.inicioDieta = inicioDieta;
         this.finDieta = finDieta;
         this.pesoBuscado = pesoBuscado;
@@ -33,20 +36,28 @@ public class Dieta {
         this.pesoInicial = pesoInicial;
     }
 
-    public int getIdDieta() {
-        return idDieta;
+    public ArrayList<Comida> getListacom() {
+        return listacom;
     }
 
-    public void setIdDieta(int idDieta) {
-        this.idDieta = idDieta;
+    public void setListacom(ArrayList<Comida> listacom) {
+        this.listacom = listacom;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public int getId_Dieta() {
+        return id_Dieta;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setId_Dieta(int id_Dieta) {
+        this.id_Dieta = id_Dieta;
+    }
+
+    public int getId_Paciente() {
+        return id_Paciente;
+    }
+
+    public void setId_Paciente(int id_Paciente) {
+        this.id_Paciente = id_Paciente;
     }
 
     public LocalDate getInicioDieta() {
@@ -91,9 +102,10 @@ public class Dieta {
 
     @Override
     public String toString() {
-        return "Dieta{" + "idDieta=" + idDieta + ", idPaciente=" + idPaciente + ", inicioDieta=" + inicioDieta + ", finDieta=" + finDieta + '}';
+        return "Dieta{" + "id_Paciente=" + id_Paciente + ", inicioDieta=" + inicioDieta + ", finDieta=" + finDieta + ", pesoBuscado=" + pesoBuscado + ", limiteCalorico=" + limiteCalorico + ", pesoInicial=" + pesoInicial + ", listacom=" + listacom + '}';
     }
-    
+
+ 
     
     
 }

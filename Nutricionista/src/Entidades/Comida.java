@@ -9,16 +9,25 @@ package Entidades;
  *
  * @author jimes
  */
-public class Comidas {
+public class Comida {
     private int idComida;
     private String nombre;
     private String detalle;
     private int Calorias;
+    private boolean estado;
 
-    public Comidas() {
+    public boolean isEstado() {
+        return estado;
     }
 
-    public Comidas(int idComida, String nombre, String detalle, int Calorias) {
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    public Comida() {
+    }
+
+    public Comida(int idComida, String nombre, String detalle, int Calorias) {
         this.idComida = idComida;
         this.nombre = nombre;
         this.detalle = detalle;
@@ -55,6 +64,11 @@ public class Comidas {
 
     public void setCalorias(int Calorias) {
         this.Calorias = Calorias;
+    }
+
+    @Override
+    public String toString() {
+        return "Comidas{" + "idComida=" + idComida + ", nombre=" + nombre + ", detalle=" + detalle + ", Calorias=" + Calorias + ", estado=" + estado + '}';
     }
     
     
