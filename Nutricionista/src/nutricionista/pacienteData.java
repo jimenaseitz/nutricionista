@@ -16,7 +16,7 @@ public class pacienteData {
     private Connection cx;
 
     public pacienteData() {
-        this.cx = Conexion.getConexion();
+        this.cx = Persistencia.getConexion();
     }
 
     public void guardarPaciente(Paciente pa) {
