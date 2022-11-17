@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nutricionista;
+package Persistencia;
 
 /**
  *
@@ -15,7 +15,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-public class Persistencia {
+public class Conexion {
     private static String db = "";
     private static String url = "jdbc:mysql://localhost:3306/nutricionista";
     private static String usr = "root";
@@ -32,7 +32,7 @@ public class Persistencia {
                 System.out.println("Se conectó a bd" + db);
             } catch (ClassNotFoundException | SQLException ex) {
                 System.out.println("No se conectó a bd " + db);
-                Logger.getLogger(Persistencia.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return cx;
@@ -44,7 +44,7 @@ public class Persistencia {
             cx.close();
             System.out.println("Se desconectó con éxito");
         } catch (SQLException ex) {
-            Logger.getLogger(Persistencia.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

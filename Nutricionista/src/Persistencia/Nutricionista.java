@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nutricionista;
+package Persistencia;
 
 /**....
  *
@@ -15,7 +15,7 @@ public class Nutricionista {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Persistencia con = new Persistencia();
+        Conexion con = new Conexion();
         con.getConexion();
         
     }

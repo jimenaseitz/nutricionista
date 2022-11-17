@@ -1,4 +1,4 @@
-package nutricionista;
+package Persistencia;
 
 import Entidades.Paciente;
 import java.sql.Connection;
@@ -16,7 +16,7 @@ public class pacienteData {
     private Connection cx;
 
     public pacienteData() {
-        this.cx = Persistencia.getConexion();
+        this.cx = Conexion.getConexion();
     }
 
     public void guardarPaciente(Paciente pa) {
@@ -33,7 +33,7 @@ public class pacienteData {
             ps.setDouble(6, pa.getAltura());
             ps.setDouble(7, pa.getPesoActual());
             ps.setDate(8, java.sql.Date.valueOf(pa.getFechaNacimiento()));
-
+            ps.close();
         } catch (SQLException ex) {
 
             if (ex.getErrorCode() == 1062) {
