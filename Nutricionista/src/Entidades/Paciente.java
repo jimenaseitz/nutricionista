@@ -16,7 +16,7 @@ public class Paciente {
     private String apellido;
     private int dni;
     private String domicilio;
-    private int idPaciente;
+    private int id_paciente;
     private LocalDate fechaNacimiento;
     private int telefono;
     private double pesoActual;
@@ -26,12 +26,12 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, int dni, String domicilio, int idPaciente, LocalDate fechaNacimiento, int telefono, double pesoActual, double altura) {
+    public Paciente(String nombre, String apellido, int dni, String domicilio, int id_paciente, LocalDate fechaNacimiento, int telefono, double pesoActual, double altura) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.domicilio = domicilio;
-        this.idPaciente = idPaciente;
+        this.id_paciente = id_paciente;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
         this.pesoActual = pesoActual;
@@ -70,12 +70,12 @@ public class Paciente {
         this.domicilio = domicilio;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public int getId_paciente() {
+        return id_paciente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setId_paciente(int id_paciente) {
+        this.id_paciente = id_paciente;
     }
 
     public LocalDate getFechaNacimiento() {
@@ -112,7 +112,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente\n" + "nombre= " + nombre + "\n apellido= " + apellido + "\n dni= " + dni +"\n idPaciente= " + idPaciente ;
+        return "Paciente\n" + "nombre= " + nombre + "\n apellido= " + apellido + "\n dni= " + dni +"\n id_Paciente= " + id_paciente ;
     }
     
     }

@@ -10,13 +10,13 @@ package Entidades;
  * @author jimes
  */
 public class Comida {
-    private int idComida;
+    private int id_comida;
     private String nombre;
     private String detalle;
     private int Calorias;
     private boolean estado;
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -27,19 +27,19 @@ public class Comida {
     public Comida() {
     }
 
-    public Comida(int idComida, String nombre, String detalle, int Calorias) {
-        this.idComida = idComida;
+    public Comida(int id_comida, String nombre, String detalle, int Calorias) {
+        this.id_comida = id_comida;
         this.nombre = nombre;
         this.detalle = detalle;
         this.Calorias = Calorias;
     }
 
-    public int getIdComida() {
-        return idComida;
+    public int getId_comida() {
+        return id_comida;
     }
 
-    public void setIdComida(int idComida) {
-        this.idComida = idComida;
+    public void setId_comida(int id_comida) {
+        this.id_comida = id_comida;
     }
 
     public String getNombre() {
@@ -68,7 +68,7 @@ public class Comida {
 
     @Override
     public String toString() {
-        return "Comidas{" + "idComida=" + idComida + ", nombre=" + nombre + ", detalle=" + detalle + ", Calorias=" + Calorias + ", estado=" + estado + '}';
+        return "Comidas{" + "idComida=" + id_comida + ", nombre=" + nombre + ", detalle=" + detalle + ", Calorias=" + Calorias + ", estado=" + estado + '}';
     }
     
     

@@ -26,9 +26,9 @@ public class Dieta {
     public Dieta() {
     }
 
-    public Dieta(int idDieta, int idPaciente, LocalDate inicioDieta, LocalDate finDieta, double pesoBuscado, int limiteCalorico, double pesoInicial) {
-        this.id_Dieta = idDieta;
-        this.id_Paciente = idPaciente;
+    public Dieta(int id_dieta, int id_paciente, LocalDate inicioDieta, LocalDate finDieta, double pesoBuscado, int limiteCalorico, double pesoInicial) {
+        this.id_Dieta = id_dieta;
+        this.id_Paciente = id_paciente;
         this.inicioDieta = inicioDieta;
         this.finDieta = finDieta;
         this.pesoBuscado = pesoBuscado;
