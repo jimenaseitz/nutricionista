@@ -26,7 +26,7 @@ public class Paciente {
     public Paciente() {
     }
 
-    public Paciente(String nombre, String apellido, int dni, String domicilio, int id_paciente, LocalDate fechaNacimiento, int telefono, double pesoActual, double altura) {
+    public Paciente(String nombre, String apellido, int dni, String domicilio, int id_paciente, LocalDate fechaNacimiento, int telefono, double pesoActual, double altura, boolean estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
@@ -36,6 +36,7 @@ public class Paciente {
         this.telefono = telefono;
         this.pesoActual = pesoActual;
         this.altura = altura;
+        this.estado = estado;
     }
 
     public String getNombre() {
@@ -109,6 +110,16 @@ public class Paciente {
     public void setAltura(double altura) {
         this.altura = altura;
     }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+    
 
     @Override
     public String toString() {
