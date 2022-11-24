@@ -38,7 +38,7 @@ public class FrPrincipal extends javax.swing.JFrame {
         MenuComida = new javax.swing.JMenu();
         mabmComida = new javax.swing.JMenuItem();
         MenuDieta = new javax.swing.JMenu();
-        mmodificaNotas = new javax.swing.JMenuItem();
+        mabmdieta = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mmsalir = new javax.swing.JMenuItem();
 
@@ -104,14 +104,14 @@ public class FrPrincipal extends javax.swing.JFrame {
             }
         });
 
-        mmodificaNotas.setText("Modificar Notas por Alumno");
-        mmodificaNotas.setName(""); // NOI18N
-        mmodificaNotas.addActionListener(new java.awt.event.ActionListener() {
+        mabmdieta.setText("A/B/M Dieta");
+        mabmdieta.setName(""); // NOI18N
+        mabmdieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmodificaNotasActionPerformed(evt);
+                mabmdietaActionPerformed(evt);
             }
         });
-        MenuDieta.add(mmodificaNotas);
+        MenuDieta.add(mabmdieta);
 
         jMenuBar1.add(MenuDieta);
 
@@ -168,9 +168,9 @@ public class FrPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_MenuDietaActionPerformed
 
-    private void mmodificaNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmodificaNotasActionPerformed
+    private void mabmdietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmdietaActionPerformed
            // TODO add your handling code here:
-    }//GEN-LAST:event_mmodificaNotasActionPerformed
+    }//GEN-LAST:event_mabmdietaActionPerformed
 
     private void mmsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmsalirActionPerformed
         this.setVisible(false);
@@ -227,7 +227,7 @@ public class FrPrincipal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem mabmComida;
     private javax.swing.JMenuItem mabmPaciente;
-    private javax.swing.JMenuItem mmodificaNotas;
+    private javax.swing.JMenuItem mabmdieta;
     private javax.swing.JMenuItem mmsalir;
     // End of variables declaration//GEN-END:variables
 }
