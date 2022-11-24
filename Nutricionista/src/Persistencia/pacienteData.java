@@ -76,5 +76,22 @@ public class pacienteData {
         }
         return pa;
     }
+    
+    public void borrarPaciente(int dni){
+        String sql = "UPDATE `paciente` SET estado=false where ?";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, dni);
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "El paciente fue borrado");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo borrar el paciente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Problema en 'BorrarPaciente'");
+        }
+        
+    }
 
 }
