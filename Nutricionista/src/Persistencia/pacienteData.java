@@ -72,12 +72,12 @@ public class pacienteData {
             }
             ps.close();
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
         }
         return pa;
     }
-    
-    public void borrarPaciente(int dni){
+
+    public void borrarPaciente(int dni) {
         String sql = "UPDATE `paciente` SET estado=false where ?";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
@@ -89,9 +89,13 @@ public class pacienteData {
             }
             ps.close();
         } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Problema en 'BorrarPaciente'");
+            JOptionPane.showMessageDialog(null, "Problema en 'BorrarPaciente'");
         }
-        
+
+    }
+
+    public void actualizarPaciente() {
+
     }
 
 }
