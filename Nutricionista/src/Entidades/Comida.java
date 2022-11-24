@@ -27,11 +27,12 @@ public class Comida {
     public Comida() {
     }
 
-    public Comida(int id_comida, String nombre, String detalle, int Calorias) {
+    public Comida(int id_comida, String nombre, String detalle, int Calorias, boolean stado) {
         this.id_comida = id_comida;
         this.nombre = nombre;
         this.detalle = detalle;
         this.Calorias = Calorias;
+        this.estado = estado;
     }
 
     public int getId_comida() {
