@@ -67,15 +67,12 @@ public class pacienteData {
                 pa.setNombre(rs.getString("nombre"));
                 pa.setApellido(rs.getString("apellido"));
                 pa.setDni(rs.getInt("dni"));
-                
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Materia no encontrada");
-            }   
+            }
             ps.close();
-
         } catch (SQLException ex) {
-
+                JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
         }
         return pa;
     }
