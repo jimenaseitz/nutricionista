@@ -3,6 +3,7 @@ package Persistencia;
 import Entidades.Paciente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -33,7 +34,7 @@ public class pacienteData {
             ps.setDouble(6, pa.getAltura());
             ps.setDouble(7, pa.getPesoActual());
             ps.setDate(8, java.sql.Date.valueOf(pa.getFechaNacimiento()));
-            ps.setBoolean(9 , true);
+            ps.setBoolean(9, true);
             ps.close();
             int registro = ps.executeUpdate();
 
@@ -53,6 +54,30 @@ public class pacienteData {
             }
 
         }
+    }
+
+    public Paciente buscarPaciente(int dni) {
+        Paciente pa = new Paciente();
+        String sql = "SELECT * FROM `paciente` WHERE `dni` = ?";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                pa.setNombre(rs.getString("nombre"));
+                pa.setApellido(rs.getString("apellido"));
+                pa.setDni(rs.getInt("dni"));
+                
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Materia no encontrada");
+            }   
+            ps.close();
+
+        } catch (SQLException ex) {
+
+        }
+        return pa;
     }
 
 }
