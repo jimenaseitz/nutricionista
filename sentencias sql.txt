@@ -1,0 +1,18 @@
+INSERT INTO `paciente`( 26912333, "Lopez Pujato", "Pablo Javier", "carmen", 2664381355, 1.7, 75, "1978-10-6", true) VALUES ('[value-2]','[value-3]','[value-4]','[value-5]','[value-6]','[value-7]','[value-8]','[value-9]','[value-10]')
+
+
+sql pacientes
+
+INSERT INTO `paciente`( `dni`, `apellido`, `nombre`, `domicilio`, `telefono`, `altura`, `pesoActual`, `fechaNacimiento`, `estado`)  values
+
+(26912333, "Lopez Pujato", "Pablo Javier", "carmen", 2664381355, 2.05, 75, "1978-10-6", true);
+
+(33825432, "Sahitz", "Jimena", "Catamarca 1220", 2651425412, 1.8, 70, "2000-07-6", true);
+(30845411, "Sanchez", "Tomás", "Urquiza 154", 3411145541, 1.5, 70, "1995-05-5", true);
+
+comida
+
+INSERT INTO `comida`( `nombre`, `detalle`, `calorias`, `estado`) VALUES 
+('Pollo','pollo con muchas calorias',500,true),
+('Ala de Pollo','pollo con menos calorias',50,true),
+('Berenjena sin escabeche','todofrutas.com',150,true);

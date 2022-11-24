@@ -30,85 +30,77 @@ public class FrPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         escritorio = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        MenuAlumno = new javax.swing.JMenu();
-        abmAlumno = new javax.swing.JMenuItem();
-        mlistadoalumnos = new javax.swing.JMenuItem();
-        mMateria = new javax.swing.JMenu();
-        mmabmMat = new javax.swing.JMenuItem();
-        mmMuestraAlxMat = new javax.swing.JMenuItem();
-        mnotas = new javax.swing.JMenu();
+        MenuPaciente = new javax.swing.JMenu();
+        mabmPaciente = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        MenuComida = new javax.swing.JMenu();
+        mabmComida = new javax.swing.JMenuItem();
+        MenuDieta = new javax.swing.JMenu();
         mmodificaNotas = new javax.swing.JMenuItem();
-        mInscripciones = new javax.swing.JMenu();
-        abminscripciones = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mmsalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SISTEMA GENERAL ADMINISTRATIVO");
+        setTitle("Nutricionista -G7");
 
         escritorio.setBackground(new java.awt.Color(55, 97, 140));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/nut.png"))); // NOI18N
+        jLabel1.setToolTipText("");
+
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1141, Short.MAX_VALUE)
+            .addGroup(escritorioLayout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 821, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 555, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
+                .addGap(0, 511, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        MenuAlumno.setText("Alumno");
-        MenuAlumno.addActionListener(new java.awt.event.ActionListener() {
+        MenuPaciente.setText("Paciente");
+        MenuPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuAlumnoActionPerformed(evt);
+                MenuPacienteActionPerformed(evt);
             }
         });
 
-        abmAlumno.setText("A/B/M Alumno");
-        abmAlumno.addActionListener(new java.awt.event.ActionListener() {
+        mabmPaciente.setText("A/B/M Paciente");
+        mabmPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abmAlumnoActionPerformed(evt);
+                mabmPacienteActionPerformed(evt);
             }
         });
-        MenuAlumno.add(abmAlumno);
+        MenuPaciente.add(mabmPaciente);
+        MenuPaciente.add(jSeparator1);
 
-        mlistadoalumnos.setText("Listado Alumnos Activos");
-        mlistadoalumnos.addActionListener(new java.awt.event.ActionListener() {
+        jMenuBar1.add(MenuPaciente);
+
+        MenuComida.setText("Comida");
+
+        mabmComida.setText("A/B/M Comida");
+        mabmComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mlistadoalumnosActionPerformed(evt);
+                mabmComidaActionPerformed(evt);
             }
         });
-        MenuAlumno.add(mlistadoalumnos);
+        MenuComida.add(mabmComida);
 
-        jMenuBar1.add(MenuAlumno);
+        jMenuBar1.add(MenuComida);
 
-        mMateria.setText("Materia");
-
-        mmabmMat.setText("A/B/M materia");
-        mmabmMat.addActionListener(new java.awt.event.ActionListener() {
+        MenuDieta.setText("Dieta");
+        MenuDieta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmabmMatActionPerformed(evt);
-            }
-        });
-        mMateria.add(mmabmMat);
-
-        mmMuestraAlxMat.setText("Muestra Alumnos Inscriptos por materia");
-        mmMuestraAlxMat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmMuestraAlxMatActionPerformed(evt);
-            }
-        });
-        mMateria.add(mmMuestraAlxMat);
-
-        jMenuBar1.add(mMateria);
-
-        mnotas.setText("Notas");
-        mnotas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnotasActionPerformed(evt);
+                MenuDietaActionPerformed(evt);
             }
         });
 
@@ -119,26 +111,9 @@ public class FrPrincipal extends javax.swing.JFrame {
                 mmodificaNotasActionPerformed(evt);
             }
         });
-        mnotas.add(mmodificaNotas);
+        MenuDieta.add(mmodificaNotas);
 
-        jMenuBar1.add(mnotas);
-
-        mInscripciones.setText("Inscripciones");
-        mInscripciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mInscripcionesActionPerformed(evt);
-            }
-        });
-
-        abminscripciones.setText("A/B/M Inscripciones");
-        abminscripciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                abminscripcionesActionPerformed(evt);
-            }
-        });
-        mInscripciones.add(abminscripciones);
-
-        jMenuBar1.add(mInscripciones);
+        jMenuBar1.add(MenuDieta);
 
         jMenu1.setText("Salir");
 
@@ -170,108 +145,40 @@ public class FrPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mInscripcionesActionPerformed
-
-
-    }//GEN-LAST:event_mInscripcionesActionPerformed
-
-    private void abminscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abminscripcionesActionPerformed
-        FrInscripciones ins = new FrInscripciones();
-        escritorio.add(ins);
-        //codigo para centrar ventana
-        Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = ins.getSize();
-        ins.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
-        //.------------------
-
-        ins.setVisible(true);
-        escritorio.moveToFront(ins);        // TODO add your handling code here:
-        ins.show();
-    }//GEN-LAST:event_abminscripcionesActionPerformed
-
-    private void MenuAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuAlumnoActionPerformed
+    private void MenuPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPacienteActionPerformed
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_MenuAlumnoActionPerformed
+    }//GEN-LAST:event_MenuPacienteActionPerformed
 
-    private void abmAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abmAlumnoActionPerformed
-        FrAlumno fal = new FrAlumno();
-        escritorio.add(fal);
+    private void mabmPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmPacienteActionPerformed
+        FrPaciente fpaciente = new FrPaciente();
+        escritorio.add(fpaciente);
         //codigo para centrar ventana
         Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = fal.getSize();
-        fal.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        Dimension tamframe = fpaciente.getSize();
+        fpaciente.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
         //.------------------
 
-        fal.setVisible(true);
-        escritorio.moveToFront(fal);        // TODO add your handling code here:
-        fal.show();
-    }//GEN-LAST:event_abmAlumnoActionPerformed
+        fpaciente.setVisible(true);
+        escritorio.moveToFront(fpaciente);        // TODO add your handling code here:
+        fpaciente.show();
+    }//GEN-LAST:event_mabmPacienteActionPerformed
 
-    private void mnotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnotasActionPerformed
+    private void MenuDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuDietaActionPerformed
 
-    }//GEN-LAST:event_mnotasActionPerformed
+    }//GEN-LAST:event_MenuDietaActionPerformed
 
     private void mmodificaNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmodificaNotasActionPerformed
-        FrNotas fNotas = new FrNotas();
-        escritorio.add(fNotas);
-        //codigo para centrar ventana
-        Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = fNotas.getSize();
-        fNotas.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
-        //.------------------
-
-        fNotas.setVisible(true);
-        escritorio.moveToFront(fNotas);        // TODO add your handling code here:
-        fNotas.show();        // TODO add your handling code here:
+           // TODO add your handling code here:
     }//GEN-LAST:event_mmodificaNotasActionPerformed
 
     private void mmsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmsalirActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_mmsalirActionPerformed
 
-    private void mlistadoalumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mlistadoalumnosActionPerformed
-        FrMateriaal flista = new FrMateriaal();
-        escritorio.add(flista);
-        //codigo para centrar ventana
-        Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = flista.getSize();
-        flista.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
-        //.------------------
-
-        flista.setVisible(true);
-        escritorio.moveToFront(flista);        // TODO add your handling code here:
-        flista.show();        // TODO add your handling code here:
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mlistadoalumnosActionPerformed
-
-    private void mmMuestraAlxMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmMuestraAlxMatActionPerformed
-        FrAlumnosxMateria fmalum = new FrAlumnosxMateria();
-        escritorio.add(fmalum);
-        Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = fmalum.getSize();
-        fmalum.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
-        //.------------------
-
-        fmalum.setVisible(true);
-        escritorio.moveToFront(fmalum);        // TODO add your handling code here:
-        fmalum.show();        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_mmMuestraAlxMatActionPerformed
-
-    private void mmabmMatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmabmMatActionPerformed
-         FrMateria fmat = new FrMateria();
-        escritorio.add(fmat);
-        Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = fmat.getSize();
-        fmat.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
-        //.------------------
-
-        fmat.setVisible(true);
-        escritorio.moveToFront(fmat);        // TODO add your handling code here:
-        fmat.show();      
-    }//GEN-LAST:event_mmabmMatActionPerformed
+    private void mabmComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmComidaActionPerformed
+  
+    }//GEN-LAST:event_mabmComidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,19 +217,17 @@ public class FrPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu MenuAlumno;
-    private javax.swing.JMenuItem abmAlumno;
-    private javax.swing.JMenuItem abminscripciones;
+    private javax.swing.JMenu MenuComida;
+    private javax.swing.JMenu MenuDieta;
+    private javax.swing.JMenu MenuPaciente;
     private javax.swing.JDesktopPane escritorio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu mInscripciones;
-    private javax.swing.JMenu mMateria;
-    private javax.swing.JMenuItem mlistadoalumnos;
-    private javax.swing.JMenuItem mmMuestraAlxMat;
-    private javax.swing.JMenuItem mmabmMat;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenuItem mabmComida;
+    private javax.swing.JMenuItem mabmPaciente;
     private javax.swing.JMenuItem mmodificaNotas;
     private javax.swing.JMenuItem mmsalir;
-    private javax.swing.JMenu mnotas;
     // End of variables declaration//GEN-END:variables
 }
