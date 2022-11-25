@@ -5,7 +5,16 @@
  */
 package Persistencia;
 
-/**....
+import Entidades.Comida;
+import Entidades.Dieta;
+import Entidades.Paciente;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+/**
+ * ....
  *
  * @author jimes
  */
@@ -17,7 +26,32 @@ public class Nutricionista {
     public static void main(String[] args) {
         Conexion con = new Conexion();
         con.getConexion();
+
+        dietaData condieta = new dietaData();
+        Dieta di = new Dieta();
+
+        pacienteData conpas = new pacienteData();
+        Paciente pas = new Paciente();
+        pas = conpas.buscarPaciente(26912333);
+        pas.setId_paciente(6);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);
+        di.setInicioDieta(inputAdDate);
+        inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
+        di.setFinDieta(inputAdDate);
+        di.setPaciente(pas);
+        System.out.println(di);
+        System.out.println(di.getId_Dieta());
         
-    }
+        
+        condieta.guardarDieta(di);
+//agrego comida a dieta//
+    Comida com= new Comida();
+    com.setId_comida(10);
+    comidaData concom = new comidaData():
     
+    
+    }
+
 }

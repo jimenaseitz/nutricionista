@@ -10,6 +10,7 @@ import Entidades.Dieta;
 import Entidades.Paciente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -21,18 +22,17 @@ import javax.swing.JOptionPane;
  */
 public class dietaData {
 
-
     private Connection cx;
 
-    public dietaData(Connection cx) {
-        this.cx = cx;
+    public dietaData() {
+        this.cx = Conexion.getConexion();
 
     }
 
-void altaDieta(Dieta di){
+    void guardarDieta(Dieta di) {
         try {
-            String sql = "//INSERT INTO `dieta`( `id_paciente`, `iniciodieta`, `findieta`,"
-                    + " `pesoBuscado`, `limiteCalorico`, `pesoInicial`) VALUES (?,?,?,?,?,?)" ;
+            String sql = "INSERT INTO `dieta`( `id_paciente`, `iniciodieta`, `findieta`,`pesoBuscado`, `limiteCalorico`, `pesoInicial`) VALUES (?,?,?,?,?,?)";
+
             PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setLong(1, di.getPaciente().getId_paciente());
             ps.setDate(2, java.sql.Date.valueOf(di.getInicioDieta()));
@@ -40,37 +40,60 @@ void altaDieta(Dieta di){
             ps.setDouble(4, di.getPesoBuscado());
             ps.setInt(5, di.getLimiteCalorico());
             ps.setDouble(6, di.getPesoInicial());
-    
-                    
-            ps.setBoolean(9, true);
-            ps.close();
             int registro = ps.executeUpdate();
-
-            String cartel;
             if (registro > 0) {
-                cartel = "Paciente agregado";
+                JOptionPane.showMessageDialog(null, "La dieta se ha dado de alta - Recuerde consignar las comidas");
             } else {
-                cartel = "No se pudo agregar el paciente";
+                JOptionPane.showMessageDialog(null, "No se ha podido crear la dieta - Verifique");
             }
-            JOptionPane.showMessageDialog(null, cartel);
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                int clave = rs.getInt(1);
+                di.setId_Dieta(clave);
+            }
+            System.out.println(di);
+            System.out.println(di.getId_Dieta());
+            ps.close();
+
         } catch (SQLException ex) {
 
             if (ex.getErrorCode() == 1062) {
-                JOptionPane.showMessageDialog(null, "El paciente ingresado ya existe");
+                JOptionPane.showMessageDialog(null, "Dieta ya existe");
             } else {
                 JOptionPane.showMessageDialog(null, "Error en sentencia ");
+
             }
 
         }
     }
 
-    
-    
-    
-void agregarComidasaDieta(Dieta dieta, ArrayList comida){
+    void agregaComidasaDieta(int id_dieta, Comida comida) {
+        //metodo buscacomida
+        
+        try {
+            String sql = "INSERT INTO `itemcomidas`( 'id_dietau', 'id_comida') VALUES (?,?)";
+            PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id_dieta);
+            ps.setInt(2, comida.getId_comida());
+            int registro = ps.executeUpdate();
+            if (registro > 0) {
+                JOptionPane.showMessageDialog(null, "Se agregó la Comida");
+            } else {
+                JOptionPane.showMessageDialog(null, "la Comida no se ha agregado");
+            }
+            ResultSet rs = ps.getGeneratedKeys();
+            /*
+            if (rs.next()) {
+                int clave = rs.getInt(1);
+                di.setId_Dieta(clave);
+            }
+             */
+            ps.close();
+        } catch (SQLException ex) {
 
-    
+            JOptionPane.showMessageDialog(null, "Error en sentencia ");
+        }
+
+    }
+
 }
-}
-
-
