@@ -39,13 +39,13 @@ public class Nutricionista {
         inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
         di.setFinDieta(inputAdDate);
         di.setPaciente(pas);
-     
+ di.setId_Dieta(15);
         //  System.out.println(di);
         //System.out.println(di.getId_Dieta());
         
         //creo dieta
-        condieta.guardarDieta(di);
-
+        condieta.altaDieta(di);
+condieta.bajaDieta(12);
         
     Comida com= new Comida();
     com.setId_comida(18);
@@ -54,8 +54,9 @@ public class Nutricionista {
     
     
     itemComidasData item= new itemComidasData();
-item.agregaComidaaDieta(di, com);
-//item.quitarComidaaDieta(di, com);
+item.altaComidaaDieta(di, com);
+item.bajaComidaaDieta(37);
+
     
     
     

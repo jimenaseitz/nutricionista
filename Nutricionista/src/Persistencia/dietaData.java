@@ -29,7 +29,7 @@ public class dietaData {
 
     }
 
-    void guardarDieta(Dieta di) {
+    void altaDieta(Dieta di) {
         try {
             String sql = "INSERT INTO `dieta`( `id_paciente`, `iniciodieta`, `findieta`,`pesoBuscado`, `limiteCalorico`, `pesoInicial`) VALUES (?,?,?,?,?,?)";
 
@@ -66,41 +66,27 @@ public class dietaData {
 
         }
     }
-
-    void agregaComidasaDieta(int id_dieta, Comida comida) {
-        //metodo buscacomida
-        
+    void bajaDieta(int id_d){
         try {
-            String sql = "INSERT INTO `itemcomidas`( 'id_dietau', 'id_comida') VALUES (?,?)";
-            PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id_dieta);
-            ps.setInt(2, comida.getId_comida());
-            int registro = ps.executeUpdate();
-            if (registro > 0) {
-                JOptionPane.showMessageDialog(null, "Se agregó la Comida");
-            } else {
-                JOptionPane.showMessageDialog(null, "la Comida no se ha agregado");
+            String sql = "DELETE FROM dieta WHERE id_dieta=?";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, id_d);
+            
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Se eliminó la dieta seleccionada");
             }
-            ResultSet rs = ps.getGeneratedKeys();
-            /*
-            if (rs.next()) {
-                int clave = rs.getInt(1);
-                di.setId_Dieta(clave);
+            else {
+                JOptionPane.showMessageDialog(null, "La dieta no Existe");
             }
-             */
-            ps.close();
         } catch (SQLException ex) {
-
-            JOptionPane.showMessageDialog(null, "Error en sentencia ");
+            JOptionPane.showMessageDialog(null, "Error-sentencia");
         }
 
     }
+        
+    }
 
-    //listar los pacientes que quieren bajar mas de 10 kilogramos
-    
+   
 
 
     
-    
-    
-}

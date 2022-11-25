@@ -29,9 +29,11 @@ public class itemComidasData {
 
     }
 
-    void agregaComidaaDieta(Dieta d, Comida c) {
+    void altaComidaaDieta(Dieta d, Comida c) {
         try {
-            String sql = "INSERT INTO `itemcomidas`( 'id_dieta, 'id_comida') VALUES (?,?)";
+            //String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
+           String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
+            
             PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, d.getId_Dieta());
             ps.setInt(2, c.getId_comida());
@@ -56,14 +58,17 @@ public class itemComidasData {
 
     }
 
-    void quitarComidaaDieta(Dieta d, Comida c) {
+    void bajaComidaaDieta(int id_item) {
         try {
-            String sql = "DELETE FROM `itemcomidas` WHERE id_dieta=? and id_comida=? ";
+            String sql = "DELETE FROM itemcomidas WHERE id_itemcomida=?";
             PreparedStatement ps = cx.prepareStatement(sql);
-            ps.setInt(1, d.getId_Dieta());
-            ps.setInt(2, c.getId_comida());
+            ps.setInt(1, id_item);
+            
             if (ps.executeUpdate() > 0) {
-                JOptionPane.showMessageDialog(null, "La comida fue quitada");
+                JOptionPane.showMessageDialog(null, "Se quitó la comida de la dieta");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "La comida no existe cargada");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
