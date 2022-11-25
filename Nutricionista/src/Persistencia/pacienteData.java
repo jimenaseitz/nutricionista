@@ -94,7 +94,12 @@ public class pacienteData {
 
     }
 
-    public void actualizarPaciente() {
+    public void actualizarPaciente() {int x=10;
+
+
+    }
+    public void buscarxkilo(int kilo){
+////SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
 
     }
 

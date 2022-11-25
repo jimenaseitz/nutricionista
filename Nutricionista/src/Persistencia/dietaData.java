@@ -96,4 +96,11 @@ public class dietaData {
 
     }
 
+    //listar los pacientes que quieren bajar mas de 10 kilogramos
+    
+
+
+    
+    
+    
 }

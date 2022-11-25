@@ -24,16 +24,14 @@ public class Nutricionista {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Conexion con = new Conexion();
-        con.getConexion();
-
+        
         dietaData condieta = new dietaData();
         Dieta di = new Dieta();
 
         pacienteData conpas = new pacienteData();
         Paciente pas = new Paciente();
         pas = conpas.buscarPaciente(26912333);
-        pas.setId_paciente(6);
+        pas.setId_paciente(9);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);
@@ -41,15 +39,25 @@ public class Nutricionista {
         inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
         di.setFinDieta(inputAdDate);
         di.setPaciente(pas);
-        System.out.println(di);
-        System.out.println(di.getId_Dieta());
+     
+        //  System.out.println(di);
+        //System.out.println(di.getId_Dieta());
         
-        
+        //creo dieta
         condieta.guardarDieta(di);
-//agrego comida a dieta//
+
+        
     Comida com= new Comida();
-    com.setId_comida(10);
-    comidaData concom = new comidaData():
+    com.setId_comida(18);
+    
+    
+    
+    
+    itemComidasData item= new itemComidasData();
+item.agregaComidaaDieta(di, com);
+//item.quitarComidaaDieta(di, com);
+    
+    
     
     
     }
