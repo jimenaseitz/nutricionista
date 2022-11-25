@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Dieta {
     private int id_Dieta;
-    private int id_Paciente;
+    private Paciente paciente;
     private LocalDate inicioDieta;
     private LocalDate finDieta;
     private double pesoBuscado;
@@ -26,15 +26,17 @@ public class Dieta {
     public Dieta() {
     }
 
-    public Dieta(int id_dieta, int id_paciente, LocalDate inicioDieta, LocalDate finDieta, double pesoBuscado, int limiteCalorico, double pesoInicial) {
-        this.id_Dieta = id_dieta;
-        this.id_Paciente = id_paciente;
+    public Dieta(int id_Dieta, Paciente paciente, LocalDate inicioDieta, LocalDate finDieta, double pesoBuscado, int limiteCalorico, double pesoInicial, ArrayList<Comida> listacom) {
+        this.id_Dieta = id_Dieta;
+        this.paciente = paciente;
         this.inicioDieta = inicioDieta;
         this.finDieta = finDieta;
         this.pesoBuscado = pesoBuscado;
         this.limiteCalorico = limiteCalorico;
         this.pesoInicial = pesoInicial;
+        this.listacom = listacom;
     }
+
 
     public ArrayList<Comida> getListacom() {
         return listacom;
@@ -52,13 +54,16 @@ public class Dieta {
         this.id_Dieta = id_Dieta;
     }
 
-    public int getId_Paciente() {
-        return id_Paciente;
+    public Paciente getPaciente() {
+        return paciente;
     }
 
-    public void setId_Paciente(int id_Paciente) {
-        this.id_Paciente = id_Paciente;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
+
+
+    
 
     public LocalDate getInicioDieta() {
         return inicioDieta;
@@ -102,10 +107,9 @@ public class Dieta {
 
     @Override
     public String toString() {
-        return "Dieta{" + "id_Paciente=" + id_Paciente + ", inicioDieta=" + inicioDieta + ", finDieta=" + finDieta + ", pesoBuscado=" + pesoBuscado + ", limiteCalorico=" + limiteCalorico + ", pesoInicial=" + pesoInicial + ", listacom=" + listacom + '}';
+        return "Dieta{" + "id_Dieta=" + id_Dieta + ", paciente=" + paciente + ", inicioDieta=" + inicioDieta + ", finDieta=" + finDieta + ", pesoBuscado=" + pesoBuscado + ", limiteCalorico=" + limiteCalorico + ", pesoInicial=" + pesoInicial + ", listacom=" + listacom + '}';
     }
 
- 
     
     
 }
