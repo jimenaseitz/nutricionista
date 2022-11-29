@@ -29,7 +29,7 @@ public class itemComidasData {
 
     }
 
-    void altaComidaaDieta(Dieta d, Comida c) {
+   public void altaComidaaDieta(Dieta d, Comida c) {
         try {
             //String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
            String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
@@ -58,7 +58,7 @@ public class itemComidasData {
 
     }
 
-    void bajaComidaaDieta(int id_item) {
+    public void bajaComidaaDieta(int id_item) {
         try {
             String sql = "DELETE FROM itemcomidas WHERE id_itemcomida=?";
             PreparedStatement ps = cx.prepareStatement(sql);
@@ -74,5 +74,33 @@ public class itemComidasData {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
         }
 
+    }
+    
+    public ArrayList <Comida> obtenerComidasporDieta(int identifica){
+        ArrayList <Comida> listaComida = new ArrayList();
+        Comida com;
+        try {
+            String sql = "SELECT * FROM itemcomidas, comida WHERE itemcomidas.id_comida= COMIDA.id_comida and itemcomidas.id_dieta=?";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, identifica);
+            ResultSet rs= ps.executeQuery();
+            System.out.println(rs.wasNull());
+            while (rs.next()) {
+              com=new Comida();
+              com.setId_comida(rs.getInt("id_comida"));
+              com.setNombre(rs.getString("nombre"));
+              com.setDetalle(rs.getString("detalle"));
+              com.setCalorias(rs.getInt("calorias"));
+              com.setEstado(rs.getBoolean("estado"));
+              listaComida.add(com);
+            }
+         ps.close();
+        } catch (SQLException ex) {
+            
+                JOptionPane.showMessageDialog(null, "Eeeerror en sentencia ");
+            
+                  
+        }
+        return listaComida;
     }
 }

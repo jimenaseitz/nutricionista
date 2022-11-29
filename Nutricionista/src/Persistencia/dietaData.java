@@ -9,6 +9,7 @@ import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.Paciente;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,13 +24,16 @@ import javax.swing.JOptionPane;
 public class dietaData {
 
     private Connection cx;
+    Dieta di;
+    pacienteData pa;
 
     public dietaData() {
         this.cx = Conexion.getConexion();
+        Dieta di;
 
     }
 
-    void altaDieta(Dieta di) {
+    public void altaDieta(Dieta di) {
         try {
             String sql = "INSERT INTO `dieta`( `id_paciente`, `iniciodieta`, `findieta`,`pesoBuscado`, `limiteCalorico`, `pesoInicial`) VALUES (?,?,?,?,?,?)";
 
@@ -66,16 +70,16 @@ public class dietaData {
 
         }
     }
-    void bajaDieta(int id_d){
+
+    public void bajaDieta(int id_d) {
         try {
             String sql = "DELETE FROM dieta WHERE id_dieta=?";
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, id_d);
-            
+
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Se eliminó la dieta seleccionada");
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null, "La dieta no Existe");
             }
         } catch (SQLException ex) {
@@ -83,10 +87,67 @@ public class dietaData {
         }
 
     }
+
+    public void modificaDieta(Dieta d) {
+        try {
+            String sql = " UPDATE `dieta` SET `id_paciente`=?,`iniciodieta`=?,`findieta`=?,`pesoBuscado`=?,`limiteCalorico`=?,`pesoInicial`=? WHERE id_dieta=?";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, d.getPaciente().getId_paciente());
+            ps.setDate(2, java.sql.Date.valueOf(d.getInicioDieta()));
+            ps.setDate(3, java.sql.Date.valueOf(d.getFinDieta()));
+            ps.setDouble(4, d.getPesoBuscado());
+            ps.setInt(5, d.getLimiteCalorico());
+            ps.setDouble(6, d.getPesoInicial());
+            ps.setInt(7, d.getId_Dieta());
+            int bandera = ps.executeUpdate();
+            if (bandera > 0) {
+                JOptionPane.showMessageDialog(null, "Datos Dieta Actualizados ");
+            } else {
+                JOptionPane.showMessageDialog(null, "NO SE HA PODIDO ACTUALIZAR LOS DATOS");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            if (ex.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "El alumno ya se encuentra actualizado con esos datos - verifique");
+            } else {
+                if (ex.getErrorCode() == 1452) {
+                    JOptionPane.showMessageDialog(null, "Dieta Inexistente");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error en sentencia ");
+                }
+            }
+
+        }
+
+    }
+
+    public Dieta buscarDieta(int id_d) {
+        di = new Dieta();
+        pa = new pacienteData();
+        try {
+            String sql = "select * from dieta where id_dieta=?";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, id_d);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                di.setId_Dieta(id_d);
+                di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
+                di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
+                di.setFinDieta(rs.getDate("findieta").toLocalDate());
+                di.setPesoBuscado(rs.getDouble("pesoBuscado"));
+                di.setLimiteCalorico(rs.getInt("limiteCalorico"));
+                di.setPesoInicial(rs.getDouble("pesoinicial"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Registro no encontrado");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en sentencia");
+        }
+        return di;
         
     }
 
-   
+}
 
-
-    
