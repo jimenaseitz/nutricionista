@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +21,7 @@ public class pacienteData {
         this.cx = Conexion.getConexion();
     }
 
-    public void guardarPaciente(Paciente pa) {
+    public void altaPaciente(Paciente pa) {
         //INSERT INTO `paciente`(`idPaciente`, `dni`, `apellido`, `nombre`, `domicilio`, `telefono`, `altura`, `pesoActual`, `fechaNacimiento`) 
         //VALUES (?,?,?,?,?,?,?,?,?)
         try {
@@ -66,7 +67,14 @@ public class pacienteData {
             if (rs.next()) {
                 pa.setNombre(rs.getString("nombre"));
                 pa.setApellido(rs.getString("apellido"));
+                pa.setAltura(rs.getDouble("altura"));
+                pa.setTelefono(rs.getInt("telefono"));
+                pa.setId_paciente(rs.getInt("id_paciente"));
+                pa.setDomicilio(rs.getString("domicilo"));
                 pa.setDni(rs.getInt("dni"));
+                pa.setPesoActual(rs.getDouble("pesoActual"));
+                pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                pa.setEstado(rs.getBoolean("estado"));
             } else {
                 JOptionPane.showMessageDialog(null, "Materia no encontrada");
             }
@@ -77,7 +85,7 @@ public class pacienteData {
         return pa;
     }
 
-    public void borrarPaciente(int dni) {
+    public void bajaPaciente(int dni) {
         String sql = "UPDATE `paciente` SET estado=false where ?";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
@@ -94,13 +102,39 @@ public class pacienteData {
 
     }
 
-    public void actualizarPaciente() {int x=10;
+    public void modificarPaciente() {int x=10;
 
 
     }
-    public void buscarxkilo(int kilo){
+    public ArrayList buscarxkilo(int kilo){
 ////SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
-
+        Paciente pa = new Paciente();
+        ArrayList <Paciente> pacientes = new ArrayList();
+        String sql = "SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>?";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, kilo);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                pa.setNombre(rs.getString("nombre"));
+                pa.setApellido(rs.getString("apellido"));
+                pa.setAltura(rs.getDouble("altura"));
+                pa.setTelefono(rs.getInt("telefono"));
+                pa.setId_paciente(rs.getInt("id_paciente"));
+                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDni(rs.getInt("dni"));
+                pa.setPesoActual(rs.getDouble("pesoActual"));
+                pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                pa.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Materia no encontrada");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+        }
+        
+        return pacientes;
     }
 
 }
