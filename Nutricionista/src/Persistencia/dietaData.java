@@ -55,8 +55,7 @@ public class dietaData {
                 int clave = rs.getInt(1);
                 di.setId_Dieta(clave);
             }
-            System.out.println(di);
-            System.out.println(di.getId_Dieta());
+    
             ps.close();
 
         } catch (SQLException ex) {

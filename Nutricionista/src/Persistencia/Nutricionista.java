@@ -67,12 +67,16 @@ item.bajaComidaaDieta(37);
 
         comidaData comdata= new comidaData();
         Comida c= new Comida();
-        
-        c.setNombre("Pizza");
+        c.setId_comida(23);
+        c.setNombre("zza");
         c.setDetalle("Queso y panceta");
         c.setCalorias(80);
         c.setEstado(true);
-        comdata.altaComida(com);
+        comdata.altaComida(c);
+        System.out.println(comdata.buscarComida(18));
+        comdata.bajaComida(23);
+        comdata.actualizarComida(c);
+    
     }
 
 }

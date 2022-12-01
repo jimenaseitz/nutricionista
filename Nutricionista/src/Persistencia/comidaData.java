@@ -23,13 +23,12 @@ public class comidaData {
     }
     public void altaComida(Comida com){
         try {
-           String sql = "INSERT INTO `comida` (`nombre`, `detalle`, `calorias`, `estado`) VALUES (?,?,?,?)";
+           String sql = "INSERT INTO comida (nombre, detalle, calorias, estado) VALUES (?,?,?,?)";
            PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
            ps.setString (1, com.getNombre());
            ps.setString (2, com.getDetalle());
            ps.setInt (3, com.getCalorias());
            ps.setBoolean (4, true);
-              
            int registro = ps.executeUpdate();
            String mensaje;
            if (registro>0){
