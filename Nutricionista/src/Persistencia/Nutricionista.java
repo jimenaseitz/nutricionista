@@ -65,7 +65,14 @@ item.bajaComidaaDieta(37);
         id = 15;
         System.out.println(d.buscarDieta(id));
 
+        comidaData comdata= new comidaData();
+        Comida c= new Comida();
         
+        c.setNombre("Pizza");
+        c.setDetalle("Queso y panceta");
+        c.setCalorias(80);
+        c.setEstado(true);
+        comdata.altaComida(com);
     }
 
 }
