@@ -76,7 +76,7 @@ public class pacienteData {
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 pa.setEstado(rs.getBoolean("estado"));
             } else {
-                JOptionPane.showMessageDialog(null, "Materia no encontrada");
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -106,8 +106,8 @@ public class pacienteData {
 
 
     }
-    public ArrayList buscarxkilo(int kilo){
-////SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
+    public ArrayList <Paciente> buscarxkilo(int kilo){
+        //SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
         Paciente pa = new Paciente();
         ArrayList <Paciente> pacientes = new ArrayList();
         String sql = "SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>?";
@@ -115,7 +115,7 @@ public class pacienteData {
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, kilo);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 pa.setNombre(rs.getString("nombre"));
                 pa.setApellido(rs.getString("apellido"));
                 pa.setAltura(rs.getDouble("altura"));
@@ -126,9 +126,8 @@ public class pacienteData {
                 pa.setPesoActual(rs.getDouble("pesoActual"));
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 pa.setEstado(rs.getBoolean("estado"));
-            } else {
-                JOptionPane.showMessageDialog(null, "Materia no encontrada");
-            }
+                pacientes.add(pa);
+            } 
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
