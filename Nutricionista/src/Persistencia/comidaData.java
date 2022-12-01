@@ -8,6 +8,7 @@ package Persistencia;
 import Entidades.Comida;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -92,6 +93,26 @@ public class comidaData {
 
     }
 
-    
+    public Comida buscarComida (int id){
+        Comida com = new Comida();
+        String sql = "SELECT * FROM comida WHERE id_comida = ?";
+        try {
+        PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                com.setNombre(rs.getString("nombre"));
+                com.setDetalle(rs.getString("detalle")); 
+                com.setCalorias(rs.getInt("calorias"));          
+                com.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+        }
+        return com;
+    }
+    }
 
-}
