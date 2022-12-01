@@ -44,5 +44,52 @@ public class comidaData {
         }
     }
     
+    public void actualizarComida(Comida com){
+        String query = "UPDATE comida set nombre=?, detalle=?, calorias=?, estado=? where id_comida=?) ";
+        try{
+            PreparedStatement ps = cx.prepareStatement(query);
+            ps.setString(1,com.getNombre());
+            ps.setString(2,com.getDetalle());
+            ps.setInt(3,com.getCalorias());
+            ps.setBoolean(4, com.getEstado());
+            if (ps.executeUpdate() > 0){
+                JOptionPane.showMessageDialog(null, "Los datos fueron actualizados");
+            } else {
+                JOptionPane.showMessageDialog(null, "La comida que desea modificar no existe ");
+            }
+            ps.close();
+        }catch (SQLException ex){
+            if(ex.getErrorCode()== 1062){
+              JOptionPane.showMessageDialog(null, "los datos de la comida ya se encuentran ingresados ");  
+            }else if (ex.getErrorCode() == 1452) {
+                JOptionPane.showMessageDialog(null, "La comida es inexistente - verifique");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error en sentencia ");
+            }
+            
+        }
+    }
+    public void borrarComida(int id) {//borrado logico
+        String sql = "UPDATE comida SET estado=false where id_comida=?";
+        PreparedStatement ps;
+        try {
+            ps = cx.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "LA COMIDA FUE BORRADA");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No fue posible actualizar");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            System.out.println("Error en sentencia verifique sqlBORRARCOMIDA");
+        }
+
+    }
+
     
+
 }
