@@ -8,6 +8,7 @@ package Persistencia;
 import Entidades.Comida;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -28,7 +29,7 @@ public class comidaData {
            ps.setString (2, com.getDetalle());
            ps.setInt (3, com.getCalorias());
            ps.setBoolean (4, true);
-           ps.close();    
+              
            int registro = ps.executeUpdate();
            String mensaje;
            if (registro>0){
@@ -37,6 +38,7 @@ public class comidaData {
                mensaje = "No se pudo agregar la comida"; 
            }
            JOptionPane.showMessageDialog(null, mensaje);
+           ps.close(); 
         } catch (SQLException ex){
             if (ex.getErrorCode() == 1062 ){
                JOptionPane.showMessageDialog(null, "La comida fue agregada con exito");
@@ -92,6 +94,26 @@ public class comidaData {
 
     }
 
-    
+    public Comida buscarComida (int id){
+        Comida com = new Comida();
+        String sql = "SELECT * FROM comida WHERE id_comida = ?";
+        try {
+        PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                com.setNombre(rs.getString("nombre"));
+                com.setDetalle(rs.getString("detalle")); 
+                com.setCalorias(rs.getInt("calorias"));          
+                com.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+        }
+        return com;
+    }
+    }
 
-}
