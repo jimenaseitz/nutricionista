@@ -108,7 +108,7 @@ public class dietaData {
             ps.close();
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1062) {
-                JOptionPane.showMessageDialog(null, "El alumno ya se encuentra actualizado con esos datos - verifique");
+                JOptionPane.showMessageDialog(null, "La dieta ya se encuentra actualizada con esos datos - verifique");
             } else {
                 if (ex.getErrorCode() == 1452) {
                     JOptionPane.showMessageDialog(null, "Dieta Inexistente");

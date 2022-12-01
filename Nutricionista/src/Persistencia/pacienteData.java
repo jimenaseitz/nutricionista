@@ -102,10 +102,42 @@ public class pacienteData {
 
     }
 
-    public void modificarPaciente() {int x=10;
+    public void modificarPaciente(Paciente pa) {
+        //UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',
+        //`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?' WHERE estado = 1;
+            String sql = "UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?'WHERE estado = 1;";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setLong(1, pa.getDni());
+            ps.setString(2, pa.getApellido());
+            ps.setString(3, pa.getNombre());
+            ps.setString(4, pa.getDomicilio());
+            ps.setInt(5, pa.getTelefono());
+            ps.setDouble(6, pa.getAltura());
+            ps.setDouble(7, pa.getPesoActual());
+            ps.setDate(8, java.sql.Date.valueOf(pa.getFechaNacimiento()));
+            if (ps.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
+            } else {
+                JOptionPane.showMessageDialog(null, "NO EXISTE EL PACIENTE - VERIFIQUE");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+              if (ex.getErrorCode() == 1062) {
+                JOptionPane.showMessageDialog(null, "El paciente ya tiene esos datos - verifique");
+            } else {
+                if (ex.getErrorCode() == 1452) {
+                    JOptionPane.showMessageDialog(null, "El paciente no existe");
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error en sentencia ");
+                }
+            }
+        }
 
     }
+    
+    
     public ArrayList <Paciente> buscarxkilo(int kilo){
         //SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
         Paciente pa = new Paciente();
@@ -130,7 +162,7 @@ public class pacienteData {
             } 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPacientexKilo'");
         }
         
         return pacientes;
