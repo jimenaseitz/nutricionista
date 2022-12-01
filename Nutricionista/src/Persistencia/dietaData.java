@@ -108,7 +108,7 @@ public class dietaData {
             ps.close();
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1062) {
-                JOptionPane.showMessageDialog(null, "El alumno ya se encuentra actualizado con esos datos - verifique");
+                JOptionPane.showMessageDialog(null, "La dieta ya se encuentra actualizada con esos datos - verifique");
             } else {
                 if (ex.getErrorCode() == 1452) {
                     JOptionPane.showMessageDialog(null, "Dieta Inexistente");
@@ -149,5 +149,33 @@ public class dietaData {
         
     }
 
+
+public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
+        di = new Dieta();
+        ArrayList <Dieta> listado = new ArrayList();
+        pa = new pacienteData();
+        try {
+            String sql = "select * from dieta where id_paciente=?";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, pas.getId_paciente());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                di.setId_Dieta(rs.getInt("id_dieta"));
+                di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
+                di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
+                di.setFinDieta(rs.getDate("findieta").toLocalDate());
+                di.setPesoBuscado(rs.getDouble("pesoBuscado"));
+                di.setLimiteCalorico(rs.getInt("limiteCalorico"));
+                di.setPesoInicial(rs.getDouble("pesoinicial"));
+            listado.add(di);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en sentencia");
+        }
+        return listado;
+        
+    }
 }
 
