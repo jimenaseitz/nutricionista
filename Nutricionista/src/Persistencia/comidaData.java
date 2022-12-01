@@ -29,7 +29,7 @@ public class comidaData {
            ps.setString (2, com.getDetalle());
            ps.setInt (3, com.getCalorias());
            ps.setBoolean (4, true);
-           ps.close();    
+              
            int registro = ps.executeUpdate();
            String mensaje;
            if (registro>0){
@@ -38,6 +38,7 @@ public class comidaData {
                mensaje = "No se pudo agregar la comida"; 
            }
            JOptionPane.showMessageDialog(null, mensaje);
+           ps.close(); 
         } catch (SQLException ex){
             if (ex.getErrorCode() == 1062 ){
                JOptionPane.showMessageDialog(null, "La comida fue agregada con exito");
