@@ -65,7 +65,7 @@ item.bajaComidaaDieta(37);
         id = 15;
         System.out.println(d.buscarDieta(id));
 
-        
+        System.out.println(conpas.buscarxkilo(10));   
     }
 
 }

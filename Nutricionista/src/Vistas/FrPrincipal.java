@@ -47,7 +47,7 @@ public class FrPrincipal extends javax.swing.JFrame {
 
         escritorio.setBackground(new java.awt.Color(55, 97, 140));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/nut.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nut.png"))); // NOI18N
         jLabel1.setToolTipText("");
 
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -58,12 +58,12 @@ public class FrPrincipal extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 821, Short.MAX_VALUE))
+                .addGap(0, 629, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addGap(0, 511, Short.MAX_VALUE)
+                .addGap(0, 504, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -169,7 +169,19 @@ public class FrPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuDietaActionPerformed
 
     private void mabmdietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmdietaActionPerformed
-           // TODO add your handling code here:
+
+        FrDieta fdieta = new FrDieta();
+        escritorio.add(fdieta);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fdieta.getSize();
+        fdieta.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+        fdieta.setVisible(true);
+        escritorio.moveToFront(fdieta);        // TODO add your handling code here:
+        fdieta.show();
+
+// TODO add your handling code here:
     }//GEN-LAST:event_mabmdietaActionPerformed
 
     private void mmsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmsalirActionPerformed
@@ -177,7 +189,7 @@ public class FrPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mmsalirActionPerformed
 
     private void mabmComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmComidaActionPerformed
-  
+
     }//GEN-LAST:event_mabmComidaActionPerformed
 
     /**
