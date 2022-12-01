@@ -105,7 +105,7 @@ public class pacienteData {
     public void modificarPaciente(Paciente pa) {
         //UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',
         //`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?' WHERE estado = 1;
-            String sql = "UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?'WHERE estado = 1;";
+        String sql = "UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?'WHERE estado = 1;";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setLong(1, pa.getDni());
@@ -123,7 +123,7 @@ public class pacienteData {
             }
             ps.close();
         } catch (SQLException ex) {
-              if (ex.getErrorCode() == 1062) {
+            if (ex.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "El paciente ya tiene esos datos - verifique");
             } else {
                 if (ex.getErrorCode() == 1452) {
@@ -136,12 +136,11 @@ public class pacienteData {
         }
 
     }
-    
-    
-    public ArrayList <Paciente> buscarxkilo(int kilo){
+
+    public ArrayList<Paciente> buscarxkilo(int kilo) {
         //SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
         Paciente pa = new Paciente();
-        ArrayList <Paciente> pacientes = new ArrayList();
+        ArrayList<Paciente> pacientes = new ArrayList();
         String sql = "SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>?";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
@@ -159,12 +158,12 @@ public class pacienteData {
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 pa.setEstado(rs.getBoolean("estado"));
                 pacientes.add(pa);
-            } 
+            }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Problema en 'BuscarPacientexKilo'");
         }
-        
+
         return pacientes;
     }
 
