@@ -49,7 +49,7 @@ public class Nutricionista {
 
         Comida com = new Comida();
         com.setId_comida(18);
-
+        
        // alta -baja comida / 
     
     itemComidasData item= new itemComidasData();

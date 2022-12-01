@@ -11,14 +11,16 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+// BUSCAR COMIDA POR ID
 
 public class comidaData {
     private Connection cx;
 
-    public comidaData(Connection cx) {
-        this.cx = cx;
+    public comidaData() {
+        this.cx = Conexion.getConexion();
+        
     }
-    public void agregarComida(Comida com){
+    public void altaComida(Comida com){
         try {
            String sql = "INSERT INTO `comida` (`nombre`, `detalle`, `calorias`, `estado`) VALUES (?,?,?,?)";
            PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -45,13 +47,13 @@ public class comidaData {
     }
     
     public void actualizarComida(Comida com){
-        String query = "UPDATE comida set nombre=?, detalle=?, calorias=?, estado=? where id_comida=?) ";
+        String query = "UPDATE comida set nombre=?, detalle=?, calorias=? where id_comida=?) ";
         try{
             PreparedStatement ps = cx.prepareStatement(query);
             ps.setString(1,com.getNombre());
             ps.setString(2,com.getDetalle());
             ps.setInt(3,com.getCalorias());
-            ps.setBoolean(4, com.getEstado());
+       
             if (ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Los datos fueron actualizados");
             } else {
@@ -70,7 +72,7 @@ public class comidaData {
             
         }
     }
-    public void borrarComida(int id) {//borrado logico
+    public void bajaComida(int id) {//borrado logico
         String sql = "UPDATE comida SET estado=false where id_comida=?";
         PreparedStatement ps;
         try {
