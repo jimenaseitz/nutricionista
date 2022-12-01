@@ -35,12 +35,12 @@ public class Nutricionista {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);
-       di.setInicioDieta(inputAdDate);
-       inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
+        di.setInicioDieta(inputAdDate);
+        inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
         di.setFinDieta(inputAdDate);
-      di.setPaciente(pas);
+        di.setPaciente(pas);
         di.setId_Dieta(15);
-         System.out.println(di);
+        System.out.println(di);
         //System.out.println(di.getId_Dieta());
 
         //creo dieta
@@ -50,22 +50,23 @@ public class Nutricionista {
         Comida com = new Comida();
         com.setId_comida(18);
 
-       // alta -baja comida / 
-    
-    itemComidasData item= new itemComidasData();
-item.altaComidaaDieta(di, com);
-item.bajaComidaaDieta(37);
+        // alta -baja comida / 
+        itemComidasData item = new itemComidasData();
+        item.altaComidaaDieta(di, com);
+        item.bajaComidaaDieta(37);
         System.out.println(item.obtenerComidasporDieta(16));
         System.out.println("---------------");;
-        
-        
-        
+
         dietaData d = new dietaData();
         int id;
         id = 15;
+        
         System.out.println(d.buscarDieta(id));
-
-        System.out.println(conpas.buscarxkilo(10));   
+        System.out.println("---");
+        System.out.println("busca dietas de un paciente");
+        System.out.println(d.buscarDietasxPaciente(pas));
+        System.out.println("-----------------");
+        System.out.println(conpas.buscarxkilo(10));
     }
 
 }
