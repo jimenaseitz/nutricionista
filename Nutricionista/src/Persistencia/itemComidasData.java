@@ -98,8 +98,6 @@ public class itemComidasData {
         } catch (SQLException ex) {
             
                 JOptionPane.showMessageDialog(null, "Eeeerror en sentencia ");
-            
-                  
         }
         return listaComida;
     }

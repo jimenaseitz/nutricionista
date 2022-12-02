@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  * ....
@@ -76,7 +77,9 @@ item.bajaComidaaDieta(37);
         System.out.println(comdata.buscarComida(18));
         comdata.bajaComida(23);
         comdata.actualizarComida(c);
-    
+        
+  
+        
     }
 
 }

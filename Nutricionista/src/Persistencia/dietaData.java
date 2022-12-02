@@ -167,6 +167,7 @@ public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
                 di.setLimiteCalorico(rs.getInt("limiteCalorico"));
                 di.setPesoInicial(rs.getDouble("pesoinicial"));
             listado.add(di);
+                System.out.println(di);
             }
             ps.close();
 
