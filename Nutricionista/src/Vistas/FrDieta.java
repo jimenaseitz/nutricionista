@@ -172,15 +172,7 @@ public class FrDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_combopacientesFocusLost
     private void armarGrillaDieta() {
         ArrayList<Dieta> templm = new ArrayList();
-        //templm = ddata.buscarDietasxPaciente(pas);
-        templm.add(die);
-        die.setId_Dieta(100);
-        die=new Dieta();
-        die.setId_Dieta(200);
-        templm.add(die);
-        
-        
-        
+        templm = ddata.buscarDietasxPaciente(pas);
         sumacalorias = 0;
         System.out.println("----dietas seleccionadas:");
         System.out.println(templm);
@@ -190,11 +182,11 @@ public class FrDieta extends javax.swing.JInternalFrame {
         modelo.setNumRows(0);
         for (Dieta aux  : templm) {
             datos[0] = aux.getId_Dieta()+"";
-            datos[1] = "pp";//aux.getInicioDieta().toString();
-            datos[2] = "pp";//aux.getFinDieta().toString();
-            datos[3] = "pp";//aux.getPesoBuscado() + "";
-            datos[4] = "pp";//aux.getPesoInicial() + "";
-            datos[5] = "pp";//aux.getLimiteCalorico() + "";
+            datos[1] = aux.getInicioDieta().toString();
+            datos[2] = aux.getFinDieta().toString();
+            datos[3] = aux.getPesoBuscado() + "";
+            datos[4] = aux.getPesoInicial() + "";
+            datos[5] = aux.getLimiteCalorico() + "";
             modelo.addRow(datos);
         }
 

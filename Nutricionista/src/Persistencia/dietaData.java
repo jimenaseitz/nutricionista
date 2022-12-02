@@ -152,7 +152,7 @@ public class dietaData {
     public ArrayList<Dieta> buscarDietasxPaciente(Paciente pas) {
         di = new Dieta();
         ArrayList<Dieta> listado = new ArrayList();
-        
+        pa=new pacienteData();
         try {
             String sql = "select * from dieta where id_paciente=?";
             PreparedStatement ps = cx.prepareStatement(sql);
@@ -160,6 +160,7 @@ public class dietaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 di=new Dieta();
+                
                 di.setId_Dieta(rs.getInt("id_dieta"));
                 di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
                 di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());

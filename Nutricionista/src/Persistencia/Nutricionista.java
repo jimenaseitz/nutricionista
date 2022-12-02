@@ -78,8 +78,8 @@ item.bajaComidaaDieta(37);
         comdata.bajaComida(23);
         comdata.actualizarComida(c);
         System.out.println("---------------muestra dietas seleccionadas");
+        pas=new Paciente();
         pas.setId_paciente(9);
-    
         System.out.println(condieta.buscarDietasxPaciente(pas));
   
         
