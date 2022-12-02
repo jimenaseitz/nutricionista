@@ -13,6 +13,7 @@ import Persistencia.dietaData;
 import Persistencia.itemComidasData;
 import Persistencia.pacienteData;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -84,7 +85,15 @@ public class FrDieta extends javax.swing.JInternalFrame {
             new String [] {
                 "codigo", "Fecha Inicio", "Fecha Fin", "Peso Buscado", "Peso Inicial", "Limite Calórico"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(girlddieta);
 
         GirldComidas.setModel(new javax.swing.table.DefaultTableModel(
@@ -151,7 +160,8 @@ public class FrDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void combopacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopacientesActionPerformed
-        // TODO add your handling code here:
+
+        
     }//GEN-LAST:event_combopacientesActionPerformed
 
     private void combopacientesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_combopacientesFocusLost
@@ -162,40 +172,55 @@ public class FrDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_combopacientesFocusLost
     private void armarGrillaDieta() {
         ArrayList<Dieta> templm = new ArrayList();
-        templm = ddata.buscarDietasxPaciente(pas);
+        //templm = ddata.buscarDietasxPaciente(pas);
+        templm.add(die);
+        die.setId_Dieta(100);
+        die=new Dieta();
+        die.setId_Dieta(200);
+        templm.add(die);
+        
+        
+        
+        sumacalorias = 0;
+        System.out.println("----dietas seleccionadas:");
+        System.out.println(templm);
+        
         String datos[] = new String[6];
         DefaultTableModel modelo = (DefaultTableModel) this.girlddieta.getModel();
         modelo.setNumRows(0);
-        sumacalorias=0;
-        for (Dieta aux : templm) {
-            datos[0] = aux.getId_Dieta() + "";
-            datos[1] = aux.getInicioDieta().toString();
-            datos[2] = aux.getFinDieta().toString();
-            datos[3] = aux.getPesoBuscado() + "";
-            datos[4] = aux.getPesoInicial() + "";
-            datos[5] = aux.getLimiteCalorico() + "";
+        for (Dieta aux  : templm) {
+            datos[0] = aux.getId_Dieta()+"";
+            datos[1] = "pp";//aux.getInicioDieta().toString();
+            datos[2] = "pp";//aux.getFinDieta().toString();
+            datos[3] = "pp";//aux.getPesoBuscado() + "";
+            datos[4] = "pp";//aux.getPesoInicial() + "";
+            datos[5] = "pp";//aux.getLimiteCalorico() + "";
             modelo.addRow(datos);
         }
-        //codigo = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));
-        armarGrillaComidas(codigo);
+
+/*
+//      codigo = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));    
+//    armarGrillaComidas(1);
+    JOptionPane.showInputDialog(this, "valor enviado: " + codigo);
     }
-    
-    
-    private void armarGrillaComidas(int codigo) {
+
+    private void armarGrillaComidas(int Codigo) {
+
         ArrayList<Comida> templc = new ArrayList();
         templc = icomdata.obtenerComidasporDieta(codigo);
         String datos[] = new String[3];
         DefaultTableModel modeloc = (DefaultTableModel) this.girlddieta.getModel();
         modeloc.setNumRows(0);
-        sumacalorias=0;
+        sumacalorias = 0;
         for (Comida aux : templc) {
-            datos[0] = aux.getId_comida()+"";
+            datos[0] = aux.getId_comida() + "";
             datos[1] = aux.getNombre();
-            datos[2] = aux.getCalorias()+"";
+            datos[2] = aux.getCalorias() + "";
             modeloc.addRow(datos);
-        sumacalorias=sumacalorias+aux.getCalorias();
+            sumacalorias = sumacalorias + aux.getCalorias();
         }
-    }
+*/
+}
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
