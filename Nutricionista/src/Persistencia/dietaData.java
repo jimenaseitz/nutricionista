@@ -55,8 +55,7 @@ public class dietaData {
                 int clave = rs.getInt(1);
                 di.setId_Dieta(clave);
             }
-            System.out.println(di);
-            System.out.println(di.getId_Dieta());
+
             ps.close();
 
         } catch (SQLException ex) {
@@ -131,6 +130,7 @@ public class dietaData {
             ps.setInt(1, id_d);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                di= new Dieta();
                 di.setId_Dieta(id_d);
                 di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
                 di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
@@ -146,20 +146,20 @@ public class dietaData {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
         }
         return di;
-        
+
     }
 
-
-public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
+    public ArrayList<Dieta> buscarDietasxPaciente(Paciente pas) {
         di = new Dieta();
-        ArrayList <Dieta> listado = new ArrayList();
-        pa = new pacienteData();
+        ArrayList<Dieta> listado = new ArrayList();
+        
         try {
             String sql = "select * from dieta where id_paciente=?";
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, pas.getId_paciente());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                di=new Dieta();
                 di.setId_Dieta(rs.getInt("id_dieta"));
                 di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
                 di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
@@ -167,7 +167,7 @@ public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
                 di.setPesoBuscado(rs.getDouble("pesoBuscado"));
                 di.setLimiteCalorico(rs.getInt("limiteCalorico"));
                 di.setPesoInicial(rs.getDouble("pesoinicial"));
-            listado.add(di);
+                listado.add(di);
             }
             ps.close();
 
@@ -175,7 +175,6 @@ public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
         }
         return listado;
-        
+
     }
 }
-

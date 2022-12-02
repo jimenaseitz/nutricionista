@@ -18,6 +18,21 @@ public class FrPrincipal extends javax.swing.JFrame {
      */
     public FrPrincipal() {
         initComponents();
+
+//despues sacar
+        
+        
+        FrDieta fdieta = new FrDieta();
+        escritorio.add(fdieta);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fdieta.getSize();
+        fdieta.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+        fdieta.setVisible(true);
+        escritorio.moveToFront(fdieta);        // TODO add your handling code here:
+        fdieta.show();
+///////
     }
 
     /**

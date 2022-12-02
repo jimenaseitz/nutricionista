@@ -8,25 +8,27 @@ package Persistencia;
 import Entidades.Comida;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+// BUSCAR COMIDA POR ID
 
 public class comidaData {
     private Connection cx;
 
-    public comidaData(Connection cx) {
-        this.cx = cx;
+    public comidaData() {
+        this.cx = Conexion.getConexion();
+        
     }
-    public void agregarComida(Comida com){
+    public void altaComida(Comida com){
         try {
-           String sql = "INSERT INTO `comida` (`nombre`, `detalle`, `calorias`, `estado`) VALUES (?,?,?,?)";
+           String sql = "INSERT INTO comida (nombre, detalle, calorias, estado) VALUES (?,?,?,?)";
            PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
            ps.setString (1, com.getNombre());
            ps.setString (2, com.getDetalle());
            ps.setInt (3, com.getCalorias());
            ps.setBoolean (4, true);
-           ps.close();    
            int registro = ps.executeUpdate();
            String mensaje;
            if (registro>0){
@@ -35,6 +37,7 @@ public class comidaData {
                mensaje = "No se pudo agregar la comida"; 
            }
            JOptionPane.showMessageDialog(null, mensaje);
+           ps.close(); 
         } catch (SQLException ex){
             if (ex.getErrorCode() == 1062 ){
                JOptionPane.showMessageDialog(null, "La comida fue agregada con exito");
@@ -45,13 +48,13 @@ public class comidaData {
     }
     
     public void actualizarComida(Comida com){
-        String query = "UPDATE comida set nombre=?, detalle=?, calorias=?, estado=? where id_comida=?) ";
+        String query = "UPDATE comida set nombre=?, detalle=?, calorias=? where id_comida=?) ";
         try{
             PreparedStatement ps = cx.prepareStatement(query);
             ps.setString(1,com.getNombre());
             ps.setString(2,com.getDetalle());
             ps.setInt(3,com.getCalorias());
-            ps.setBoolean(4, com.getEstado());
+       
             if (ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Los datos fueron actualizados");
             } else {
@@ -70,7 +73,7 @@ public class comidaData {
             
         }
     }
-    public void borrarComida(int id) {//borrado logico
+    public void bajaComida(int id) {//borrado logico
         String sql = "UPDATE comida SET estado=false where id_comida=?";
         PreparedStatement ps;
         try {
@@ -90,6 +93,26 @@ public class comidaData {
 
     }
 
-    
+    public Comida buscarComida (int id){
+        Comida com = new Comida();
+        String sql = "SELECT * FROM comida WHERE id_comida = ?";
+        try {
+        PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                com.setNombre(rs.getString("nombre"));
+                com.setDetalle(rs.getString("detalle")); 
+                com.setCalorias(rs.getInt("calorias"));          
+                com.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+        }
+        return com;
+    }
+    }
 
-}
