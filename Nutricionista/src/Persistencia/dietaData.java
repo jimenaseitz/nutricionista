@@ -55,7 +55,7 @@ public class dietaData {
                 int clave = rs.getInt(1);
                 di.setId_Dieta(clave);
             }
-    
+
             ps.close();
 
         } catch (SQLException ex) {
@@ -145,13 +145,12 @@ public class dietaData {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
         }
         return di;
-        
+
     }
 
-
-public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
+    public ArrayList<Dieta> buscarDietasxPaciente(Paciente pas) {
         di = new Dieta();
-        ArrayList <Dieta> listado = new ArrayList();
+        ArrayList<Dieta> listado = new ArrayList();
         pa = new pacienteData();
         try {
             String sql = "select * from dieta where id_paciente=?";
@@ -166,8 +165,7 @@ public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
                 di.setPesoBuscado(rs.getDouble("pesoBuscado"));
                 di.setLimiteCalorico(rs.getInt("limiteCalorico"));
                 di.setPesoInicial(rs.getDouble("pesoinicial"));
-            listado.add(di);
-                System.out.println(di);
+                listado.add(di);
             }
             ps.close();
 
@@ -175,7 +173,6 @@ public ArrayList <Dieta> buscarDietasxPaciente(Paciente pas) {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
         }
         return listado;
-        
+
     }
 }
-

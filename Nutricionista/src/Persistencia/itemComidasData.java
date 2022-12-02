@@ -76,13 +76,13 @@ public class itemComidasData {
 
     }
     
-    public ArrayList <Comida> obtenerComidasporDieta(int identifica){
+    public ArrayList <Comida> obtenerComidasporDieta(int iddieta){
         ArrayList <Comida> listaComida = new ArrayList();
         Comida com;
         try {
             String sql = "SELECT * FROM itemcomidas, comida WHERE itemcomidas.id_comida= COMIDA.id_comida and itemcomidas.id_dieta=?";
             PreparedStatement ps = cx.prepareStatement(sql);
-            ps.setInt(1, identifica);
+            ps.setInt(1, iddieta);
             ResultSet rs= ps.executeQuery();
             System.out.println(rs.wasNull());
             while (rs.next()) {
