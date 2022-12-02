@@ -84,6 +84,35 @@ public class pacienteData {
         }
         return pa;
     }
+    
+    
+    public Paciente buscarPacientexId(int id_paciente) {
+        Paciente pa = new Paciente();
+        String sql = "SELECT * FROM `paciente` WHERE `id_paciente` = ?";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, id_paciente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                pa.setNombre(rs.getString("nombre"));
+                pa.setApellido(rs.getString("apellido"));
+                pa.setAltura(rs.getDouble("altura"));
+                pa.setTelefono(rs.getInt("telefono"));
+                pa.setId_paciente(rs.getInt("id_paciente"));
+                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDni(rs.getInt("dni"));
+                pa.setPesoActual(rs.getDouble("pesoActual"));
+                pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                pa.setEstado(rs.getBoolean("estado"));
+            } else {
+                JOptionPane.showMessageDialog(null, "Paciente no encontrado");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente x ID'");
+        }
+        return pa;
+    }
 
     public void bajaPaciente(int dni) {
         String sql = "UPDATE `paciente` SET estado=false where ?";
