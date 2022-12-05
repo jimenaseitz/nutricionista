@@ -79,9 +79,9 @@ item.bajaComidaaDieta(37);
         comdata.actualizarComida(c);
         System.out.println("---------------muestra dietas seleccionadas");
         pas=new Paciente();
-        pas.setId_paciente(9);
+        pas.setId_paciente(19);
         System.out.println(condieta.buscarDietasxPaciente(pas));
-  
+        System.out.println(item.obtenerComidasporDieta(19));
         
     }
 
