@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import java.awt.BorderLayout;
+
 /**
  *
  * @author sistema
@@ -16,6 +18,12 @@ public class FrPaciente extends javax.swing.JInternalFrame {
      */
     public FrPaciente() {
         initComponents();
+        AltaP pa = new AltaP();
+        pa.setSize(991, 357);
+        pa.setLocation(0, 0);
+        
+        jpAltaP.removeAll();
+        jpAltaP.add(pa, BorderLayout.CENTER);
     }
 
     /**
