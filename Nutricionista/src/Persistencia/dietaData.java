@@ -132,7 +132,7 @@ public class dietaData {
             if (rs.next()) {
                 di= new Dieta();
                 di.setId_Dieta(id_d);
-                di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
+                di.setPaciente(pa.buscarPacientexId(rs.getInt("id_paciente")));
                 di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
                 di.setFinDieta(rs.getDate("findieta").toLocalDate());
                 di.setPesoBuscado(rs.getDouble("pesoBuscado"));
@@ -161,7 +161,7 @@ public class dietaData {
             while (rs.next()) {
                 di=new Dieta();
                 di.setId_Dieta(rs.getInt("id_dieta"));
-                di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
+                di.setPaciente(pa.buscarPacientexId(rs.getInt("id_paciente")));
                 di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
                 di.setFinDieta(rs.getDate("findieta").toLocalDate());
                 di.setPesoBuscado(rs.getDouble("pesoBuscado"));
