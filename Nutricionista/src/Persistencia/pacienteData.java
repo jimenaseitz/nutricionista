@@ -199,5 +199,35 @@ public class pacienteData {
 
         return pacientes;
     }
+    
+    public ArrayList<Paciente> buscarpacientes() {    
+        Paciente pa ;
+        ArrayList<Paciente> pacientes = new ArrayList();
+        String sql = "SELECT * FROM paciente WHERE `estado` = 1";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                pa = new Paciente();
+                pa.setNombre(rs.getString("nombre"));
+                pa.setApellido(rs.getString("apellido"));
+                pa.setAltura(rs.getDouble("altura"));
+                pa.setTelefono(rs.getInt("telefono"));
+                pa.setId_paciente(rs.getInt("id_paciente"));
+                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDni(rs.getInt("dni"));
+                pa.setPesoActual(rs.getDouble("pesoActual"));
+                pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
+                pa.setEstado(rs.getBoolean("estado"));
+                pacientes.add(pa);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+        }
+
+        return pacientes;
+    }
+
 
 }
