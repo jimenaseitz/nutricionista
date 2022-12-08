@@ -11,6 +11,7 @@ import Entidades.Paciente;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -28,13 +29,18 @@ public class Nutricionista {
 
         dietaData condieta = new dietaData();
         Dieta di = new Dieta();
+        ArrayList <Paciente> pacientes = new ArrayList();
 
         pacienteData conpas = new pacienteData();
         Paciente pas = new Paciente();
-        pas = conpas.buscarPacientexDNI(26912333);
+        pas = conpas.buscarPacientexDNI(30845411);
         System.out.println("Busca un paciente por DNI:");
         System.out.println(pas);
         pas.setId_paciente(9);
+        System.out.println("----------------------------------------");
+        System.out.println("Busca paciente por Kilo: ");
+        pacientes = conpas.buscarxkilo(10);
+        System.out.println(pacientes);
         System.out.println("----------------------------------------");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);

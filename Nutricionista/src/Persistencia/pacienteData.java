@@ -72,7 +72,7 @@ public class pacienteData {
                 pa.setAltura(rs.getDouble("altura"));
                 pa.setTelefono(rs.getInt("telefono"));
                 pa.setId_paciente(rs.getInt("id_paciente"));
-                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDomicilio(rs.getString("domicilio"));
                 pa.setDni(dni);
                 pa.setPesoActual(rs.getDouble("pesoActual"));
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
@@ -82,7 +82,8 @@ public class pacienteData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+            System.out.println("El error en Buscar Paciente x DNI es: " + ex.getMessage() + "y esto es el SQL state: " + ex.getSQLState());
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPacientexDNI'");
         }
         return pa;
     }
@@ -102,7 +103,7 @@ public class pacienteData {
                 pa.setAltura(rs.getDouble("altura"));
                 pa.setTelefono(rs.getInt("telefono"));
                 pa.setId_paciente(rs.getInt("id_paciente"));
-                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDomicilio(rs.getString("domicilio"));
                 pa.setDni(rs.getInt("dni"));
                 pa.setPesoActual(rs.getDouble("pesoActual"));
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
@@ -185,7 +186,7 @@ public class pacienteData {
                 pa.setAltura(rs.getDouble("altura"));
                 pa.setTelefono(rs.getInt("telefono"));
                 pa.setId_paciente(rs.getInt("id_paciente"));
-                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDomicilio(rs.getString("domicilio"));
                 pa.setDni(rs.getInt("dni"));
                 pa.setPesoActual(rs.getDouble("pesoActual"));
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
@@ -214,7 +215,7 @@ public class pacienteData {
                 pa.setAltura(rs.getDouble("altura"));
                 pa.setTelefono(rs.getInt("telefono"));
                 pa.setId_paciente(rs.getInt("id_paciente"));
-                pa.setDomicilio(rs.getString("domicilo"));
+                pa.setDomicilio(rs.getString("domicilio"));
                 pa.setDni(rs.getInt("dni"));
                 pa.setPesoActual(rs.getDouble("pesoActual"));
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
