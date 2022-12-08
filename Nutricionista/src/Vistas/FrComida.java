@@ -5,15 +5,19 @@
  */
 package Vistas;
 
+import Entidades.Comida;
+import Persistencia.comidaData;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sistema
  */
 public class FrComida extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form FrComida
-     */
+    comidaData comd = new comidaData();
+    Comida aux = new Comida();
+    
     public FrComida() {
         initComponents();
     }
@@ -27,21 +31,241 @@ public class FrComida extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tIdComida = new javax.swing.JTextPane();
+        jLabel2 = new javax.swing.JLabel();
+        BBuscar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tNombre = new javax.swing.JTextPane();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tDetalle = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
+        BNuevo = new javax.swing.JButton();
+        BActualizar = new javax.swing.JButton();
+        BBorrar = new javax.swing.JButton();
+        BSalir = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tCalorias = new javax.swing.JTextPane();
+        jLabel5 = new javax.swing.JLabel();
+        BLimpiar = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        jLabel1.setText("Comida");
+
+        jScrollPane1.setViewportView(tIdComida);
+
+        jLabel2.setText("Codigo");
+
+        BBuscar.setText("Buscar");
+        BBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarActionPerformed(evt);
+            }
+        });
+
+        jScrollPane2.setViewportView(tNombre);
+
+        jLabel3.setText("Nombre");
+
+        tDetalle.setColumns(20);
+        tDetalle.setRows(5);
+        jScrollPane3.setViewportView(tDetalle);
+
+        jLabel4.setText("Detalle");
+
+        BNuevo.setText("Nuevo");
+        BNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BNuevoActionPerformed(evt);
+            }
+        });
+
+        BActualizar.setText("Actualizar");
+        BActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BActualizarActionPerformed(evt);
+            }
+        });
+
+        BBorrar.setText("Borrar");
+        BBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBorrarActionPerformed(evt);
+            }
+        });
+
+        BSalir.setText("Salir");
+        BSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BSalirActionPerformed(evt);
+            }
+        });
+
+        jScrollPane4.setViewportView(tCalorias);
+
+        jLabel5.setText("Calorias");
+
+        BLimpiar.setText("Limpiar");
+        BLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BLimpiarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(BBuscar))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BActualizar)
+                        .addGap(3, 3, 3)
+                        .addComponent(BBorrar)
+                        .addGap(21, 21, 21)
+                        .addComponent(BSalir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BLimpiar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel1)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BBuscar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BNuevo)
+                    .addComponent(BActualizar)
+                    .addComponent(BBorrar)
+                    .addComponent(BSalir)
+                    .addComponent(BLimpiar))
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
+         if (!this.tIdComida.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            aux = comd.buscarComida(Integer.parseInt(this.tIdComida.getText()));
+            this.tIdComida.setText(String.valueOf(aux.getId_comida()));
+            this.tNombre.setText(aux.getNombre());
+            this.tDetalle.setText(String.valueOf(aux.getDetalle()));
+            this.tCalorias.setText(String.valueOf(aux.getCalorias()));
+            
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el código");
+        }
+    }//GEN-LAST:event_BBuscarActionPerformed
+
+    private void BNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoActionPerformed
+        aux.setCalorias(Integer.parseInt(this.tCalorias.getText()));
+        aux.setEstado(true);
+        aux.setNombre(this.tNombre.getText());
+        aux.setCalorias(Integer.parseInt(this.tCalorias.getText()));
+        aux.setDetalle(this.tDetalle.getText());
+        comd.altaComida(aux);
+        limpiar();
+    }//GEN-LAST:event_BNuevoActionPerformed
+
+    private void BActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BActualizarActionPerformed
+       if (!this.tIdComida.getText().equals("")) {
+            aux.setId_comida(Integer.parseInt(this.tIdComida.getText()));
+            aux.setCalorias(Integer.parseInt(this.tCalorias.getText()));
+            aux.setEstado(true);
+            aux.setNombre(this.tNombre.getText());
+            comd.actualizarComida(aux);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe ingresar el código");
+        }
+    }//GEN-LAST:event_BActualizarActionPerformed
+
+    private void BSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirActionPerformed
+      this.setVisible(false);       
+    }//GEN-LAST:event_BSalirActionPerformed
+
+    private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
+        if (!this.tIdComida.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            comd.bajaComida(Integer.parseInt(this.tIdComida.getText()));
+        }
+    }//GEN-LAST:event_BBorrarActionPerformed
+
+    private void BLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BLimpiarActionPerformed
+       limpiar();
+    }//GEN-LAST:event_BLimpiarActionPerformed
+
+    private void limpiar() {
+        this.tIdComida.setText("");
+        this.tNombre.setText("");
+        this.tCalorias.setText("");
+        this.tDetalle.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BActualizar;
+    private javax.swing.JButton BBorrar;
+    private javax.swing.JButton BBuscar;
+    private javax.swing.JButton BLimpiar;
+    private javax.swing.JButton BNuevo;
+    private javax.swing.JButton BSalir;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextPane tCalorias;
+    private javax.swing.JTextArea tDetalle;
+    private javax.swing.JTextPane tIdComida;
+    private javax.swing.JTextPane tNombre;
     // End of variables declaration//GEN-END:variables
 }
