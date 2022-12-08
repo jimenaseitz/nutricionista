@@ -119,7 +119,7 @@ public class comidaData {
     public ArrayList<Comida> buscaComidasActivas() {
         ArrayList<Comida> aux = new ArrayList();
         Comida com;
-        String sql = "Select * from comida where estado=1";
+        String sql = "Select * from comida where estado=1 ORDER BY nombre ASC";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
