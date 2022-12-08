@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 // BUSCAR COMIDA POR ID
 
@@ -95,16 +96,17 @@ public class comidaData {
 
     public Comida buscarComida (int id){
         Comida com = new Comida();
-        String sql = "SELECT * FROM comida WHERE id_comida = ?";
+        String sql = "SELECT * FROM comida WHERE id_comida = ? and estado = true";
         try {
         PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                com = new Comida();
                 com.setNombre(rs.getString("nombre"));
                 com.setDetalle(rs.getString("detalle")); 
                 com.setCalorias(rs.getInt("calorias"));          
-                com.setEstado(rs.getBoolean("estado"));
+               
             } else {
                 JOptionPane.showMessageDialog(null, "Paciente no encontrado");
             }
@@ -113,6 +115,28 @@ public class comidaData {
             JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
         }
         return com;
+    }
+    public ArrayList<Comida> buscaComidasActivas() {
+        ArrayList<Comida> aux = new ArrayList();
+        Comida com;
+        String sql = "Select * from comida where estado=1";
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                com = new Comida();
+                com.setId_comida(rs.getInt("id_comida"));
+                com.setNombre(rs.getString("nombre"));
+                com.setDetalle(rs.getString("detalle"));
+                com.setCalorias(rs.getInt("calorias"));
+                aux.add(com);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lista O consulta incorrecta, verifique");
+        }
+        return aux;
+
     }
     }
 
