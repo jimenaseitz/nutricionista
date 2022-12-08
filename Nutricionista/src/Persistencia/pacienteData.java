@@ -1,3 +1,4 @@
+
 package Persistencia;
 
 import Entidades.Paciente;
@@ -65,6 +66,7 @@ public class pacienteData {
             ps.setInt(1, dni);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+               pa=new Paciente(); 
                 pa.setNombre(rs.getString("nombre"));
                 pa.setApellido(rs.getString("apellido"));
                 pa.setAltura(rs.getDouble("altura"));
@@ -94,6 +96,7 @@ public class pacienteData {
             ps.setInt(1, id_paciente);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                pa=new Paciente();
                 pa.setNombre(rs.getString("nombre"));
                 pa.setApellido(rs.getString("apellido"));
                 pa.setAltura(rs.getDouble("altura"));

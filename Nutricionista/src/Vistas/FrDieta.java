@@ -28,7 +28,7 @@ public class FrDieta extends javax.swing.JInternalFrame {
     dietaData ddata = new dietaData();
     private Dieta die = new Dieta();
     itemComidasData icomdata = new itemComidasData();
-    int codigo, sumacalorias;
+    int cod, sumacalorias;
 
     /**
      * Creates new form FxDieta
@@ -52,8 +52,20 @@ public class FrDieta extends javax.swing.JInternalFrame {
         girlddieta = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         GirldComidas = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtSumacalComidas = new javax.swing.JTextPane();
 
+        combopacientes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                combopacientesItemStateChanged(evt);
+            }
+        });
         combopacientes.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                combopacientesFocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 combopacientesFocusLost(evt);
             }
@@ -61,6 +73,11 @@ public class FrDieta extends javax.swing.JInternalFrame {
         combopacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combopacientesActionPerformed(evt);
+            }
+        });
+        combopacientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                combopacientesKeyReleased(evt);
             }
         });
 
@@ -94,6 +111,36 @@ public class FrDieta extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        girlddieta.addHierarchyListener(new java.awt.event.HierarchyListener() {
+            public void hierarchyChanged(java.awt.event.HierarchyEvent evt) {
+                girlddietaHierarchyChanged(evt);
+            }
+        });
+        girlddieta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                girlddietaFocusGained(evt);
+            }
+        });
+        girlddieta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                girlddietaMouseClicked(evt);
+            }
+        });
+        girlddieta.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                girlddietaCaretPositionChanged(evt);
+            }
+        });
+        girlddieta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                girlddietaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                girlddietaKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(girlddieta);
 
         GirldComidas.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,6 +156,17 @@ public class FrDieta extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(GirldComidas);
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Calorias Actuales en comidas");
+
+        jScrollPane3.setViewportView(txtSumacalComidas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,22 +174,32 @@ public class FrDieta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                            .addComponent(combopacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(172, 172, 172)
+                                .addComponent(jButton1)
+                                .addGap(46, 46, 46)
+                                .addComponent(jButton2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(218, 218, 218)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                                    .addComponent(combopacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(245, 245, 245)
+                                .addComponent(jLabel2)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(jLabel2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,14 +208,21 @@ public class FrDieta extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(combopacientes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(85, 85, 85)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(197, 197, 197))
         );
 
@@ -157,31 +232,111 @@ public class FrDieta extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         armarGrillaDieta();
 
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void combopacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopacientesActionPerformed
+                pas = (Paciente) this.combopacientes.getSelectedItem();
+         //obtengo valor calorias y saco codigo de calorias
+        DefaultTableModel modelo = (DefaultTableModel) this.girlddieta.getModel();
+        if (this.girlddieta.getSelectedRow() != -1) {//me fijo si seleleccionó materia desde el grid
+            cod = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));
+            armarGrillaComidas(cod);
+        }else {
+            cod=0;
+            armarGrillaComidas(cod);
+        }
+        this.txtSumacalComidas.setText(sumacalorias + "");
+        //
+        
 
+
+        
         
     }//GEN-LAST:event_combopacientesActionPerformed
 
     private void combopacientesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_combopacientesFocusLost
 
         pas = (Paciente) this.combopacientes.getSelectedItem();
+cod=0;
 
         // TODO add your handling code here:
     }//GEN-LAST:event_combopacientesFocusLost
+
+    private void girlddietaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_girlddietaKeyPressed
+
+    }//GEN-LAST:event_girlddietaKeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        //obtengo valor calorias y saco codigo de calorias
+        DefaultTableModel modelo = (DefaultTableModel) this.girlddieta.getModel();
+        if (this.girlddieta.getSelectedRow() != -1) {//me fijo si seleleccionó materia desde el grid
+            cod = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));
+            armarGrillaComidas(cod);
+        }
+        this.txtSumacalComidas.setText(sumacalorias + "");
+        //
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void girlddietaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_girlddietaFocusGained
+
+    }//GEN-LAST:event_girlddietaFocusGained
+
+    private void girlddietaHierarchyChanged(java.awt.event.HierarchyEvent evt) {//GEN-FIRST:event_girlddietaHierarchyChanged
+    }//GEN-LAST:event_girlddietaHierarchyChanged
+
+    private void girlddietaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_girlddietaKeyReleased
+        //obtengo valor calorias y saco codigo de calorias
+        DefaultTableModel modelo = (DefaultTableModel) this.girlddieta.getModel();
+        if (this.girlddieta.getSelectedRow() != -1) {//me fijo si seleleccionó materia desde el grid
+            cod = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));
+            armarGrillaComidas(cod);
+        }
+        this.txtSumacalComidas.setText(sumacalorias + "");
+        //
+
+    }//GEN-LAST:event_girlddietaKeyReleased
+
+    private void girlddietaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girlddietaMouseClicked
+        //obtengo valor calorias y saco codigo de calorias
+        DefaultTableModel modelo = (DefaultTableModel) this.girlddieta.getModel();
+        if (this.girlddieta.getSelectedRow() != -1) {//me fijo si seleleccionó materia desde el grid
+            cod = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));
+            armarGrillaComidas(cod);
+        }
+        this.txtSumacalComidas.setText(sumacalorias + "");
+        //
+
+    }//GEN-LAST:event_girlddietaMouseClicked
+
+    private void girlddietaCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_girlddietaCaretPositionChanged
+
+    }//GEN-LAST:event_girlddietaCaretPositionChanged
+
+    private void combopacientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_combopacientesKeyReleased
+        armarGrillaDieta();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combopacientesKeyReleased
+
+    private void combopacientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_combopacientesItemStateChanged
+
+        // TODO add your handling code here:ar
+    }//GEN-LAST:event_combopacientesItemStateChanged
+
+    private void combopacientesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_combopacientesFocusGained
+
+
+    // TODO add your handling code here:
+    }//GEN-LAST:event_combopacientesFocusGained
     private void armarGrillaDieta() {
         ArrayList<Dieta> templm = new ArrayList();
         templm = ddata.buscarDietasxPaciente(pas);
-        sumacalorias = 0;
-        System.out.println("----dietas seleccionadas:");
-        System.out.println(templm);
-        
         String datos[] = new String[6];
         DefaultTableModel modelo = (DefaultTableModel) this.girlddieta.getModel();
         modelo.setNumRows(0);
-        for (Dieta aux  : templm) {
-            datos[0] = aux.getId_Dieta()+"";
+        for (Dieta aux : templm) {
+            datos[0] = aux.getId_Dieta() + "";
             datos[1] = aux.getInicioDieta().toString();
             datos[2] = aux.getFinDieta().toString();
             datos[3] = aux.getPesoBuscado() + "";
@@ -190,18 +345,14 @@ public class FrDieta extends javax.swing.JInternalFrame {
             modelo.addRow(datos);
         }
 
-/*
-//      codigo = Integer.parseInt(String.valueOf(modelo.getValueAt(this.girlddieta.getSelectedRow(), 0)));    
-//    armarGrillaComidas(1);
-    JOptionPane.showInputDialog(this, "valor enviado: " + codigo);
     }
 
-    private void armarGrillaComidas(int Codigo) {
+    private void armarGrillaComidas(int codigo) {
 
         ArrayList<Comida> templc = new ArrayList();
         templc = icomdata.obtenerComidasporDieta(codigo);
         String datos[] = new String[3];
-        DefaultTableModel modeloc = (DefaultTableModel) this.girlddieta.getModel();
+        DefaultTableModel modeloc = (DefaultTableModel) this.GirldComidas.getModel();
         modeloc.setNumRows(0);
         sumacalorias = 0;
         for (Comida aux : templc) {
@@ -211,8 +362,8 @@ public class FrDieta extends javax.swing.JInternalFrame {
             modeloc.addRow(datos);
             sumacalorias = sumacalorias + aux.getCalorias();
         }
-*/
-}
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -220,9 +371,13 @@ public class FrDieta extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<Paciente> combopacientes;
     private javax.swing.JTable girlddieta;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextPane txtSumacalComidas;
     // End of variables declaration//GEN-END:variables
 }

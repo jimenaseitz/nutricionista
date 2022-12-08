@@ -160,7 +160,6 @@ public class dietaData {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 di=new Dieta();
-                
                 di.setId_Dieta(rs.getInt("id_dieta"));
                 di.setPaciente(pa.buscarPaciente(rs.getInt("id_paciente")));
                 di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
@@ -176,6 +175,5 @@ public class dietaData {
             JOptionPane.showMessageDialog(null, "Error en sentencia");
         }
         return listado;
-
     }
 }

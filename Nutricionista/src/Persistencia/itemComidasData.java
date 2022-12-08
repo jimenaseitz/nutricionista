@@ -33,7 +33,6 @@ public class itemComidasData {
         try {
             //String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
            String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
-            
             PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, d.getId_Dieta());
             ps.setInt(2, c.getId_comida());
@@ -44,12 +43,12 @@ public class itemComidasData {
                 JOptionPane.showMessageDialog(null, "la Comida no se ha agregado");
             }
             ResultSet rs = ps.getGeneratedKeys();
-            /*
+            
             if (rs.next()) {
                 int clave = rs.getInt(1);
-                di.setId_Dieta(clave);
+                d.setId_Dieta(clave);
             }
-             */
+             
             ps.close();
         } catch (SQLException ex) {
 
