@@ -52,6 +52,8 @@ public class FrComida extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         BLimpiar = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel1.setText("Comida");
 
@@ -190,7 +192,9 @@ public class FrComida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
-         if (!this.tIdComida.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+        
+       if (this.tIdComida.getText().matches("[0-9]*")) {
+    
             aux = comd.buscarComida(Integer.parseInt(this.tIdComida.getText()));
             this.tIdComida.setText(String.valueOf(aux.getId_comida()));
             this.tNombre.setText(aux.getNombre());
