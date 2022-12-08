@@ -77,6 +77,7 @@ item.bajaComidaaDieta(37);
         System.out.println(comdata.buscarComida(18));
         comdata.bajaComida(23);
         comdata.actualizarComida(c);
+        comdata.buscarComida(18);
         System.out.println("---------------muestra dietas seleccionadas");
         pas=new Paciente();
         pas.setId_paciente(9);

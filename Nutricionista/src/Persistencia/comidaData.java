@@ -95,16 +95,17 @@ public class comidaData {
 
     public Comida buscarComida (int id){
         Comida com = new Comida();
-        String sql = "SELECT * FROM comida WHERE id_comida = ?";
+        String sql = "SELECT * FROM comida WHERE id_comida = ? and estado = true";
         try {
         PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                com = new Comida();
                 com.setNombre(rs.getString("nombre"));
                 com.setDetalle(rs.getString("detalle")); 
                 com.setCalorias(rs.getInt("calorias"));          
-                com.setEstado(rs.getBoolean("estado"));
+               
             } else {
                 JOptionPane.showMessageDialog(null, "Paciente no encontrado");
             }
