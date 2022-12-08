@@ -224,7 +224,7 @@ public class pacienteData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPacientes'");
         }
 
         return pacientes;
