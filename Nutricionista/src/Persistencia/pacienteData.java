@@ -58,7 +58,7 @@ public class pacienteData {
         }
     }
 
-    public Paciente buscarPaciente(int dni) {
+    public Paciente buscarPacientexDNI(int dni) {
         Paciente pa = new Paciente();
         String sql = "SELECT * FROM `paciente` WHERE `dni` = ?";
         try {
@@ -73,7 +73,7 @@ public class pacienteData {
                 pa.setTelefono(rs.getInt("telefono"));
                 pa.setId_paciente(rs.getInt("id_paciente"));
                 pa.setDomicilio(rs.getString("domicilo"));
-                pa.setDni(rs.getInt("dni"));
+                pa.setDni(dni);
                 pa.setPesoActual(rs.getDouble("pesoActual"));
                 pa.setFechaNacimiento(rs.getDate("fechaNacimiento").toLocalDate());
                 pa.setEstado(rs.getBoolean("estado"));

@@ -31,9 +31,11 @@ public class Nutricionista {
 
         pacienteData conpas = new pacienteData();
         Paciente pas = new Paciente();
-        pas = conpas.buscarPaciente(26912333);
+        pas = conpas.buscarPacientexDNI(26912333);
+        System.out.println("Busca un paciente por DNI:");
+        System.out.println(pas);
         pas.setId_paciente(9);
-
+        System.out.println("----------------------------------------");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);
         di.setInicioDieta(inputAdDate);
