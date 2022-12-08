@@ -36,12 +36,12 @@ public class Nutricionista {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);
-       di.setInicioDieta(inputAdDate);
-       inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
+        di.setInicioDieta(inputAdDate);
+        inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
         di.setFinDieta(inputAdDate);
-      di.setPaciente(pas);
+        di.setPaciente(pas);
         di.setId_Dieta(15);
-         System.out.println(di);
+        System.out.println(di);
         //System.out.println(di.getId_Dieta());
 
         //creo dieta
@@ -50,24 +50,21 @@ public class Nutricionista {
 
         Comida com = new Comida();
         com.setId_comida(18);
-        
-       // alta -baja comida / 
-    
-    itemComidasData item= new itemComidasData();
-item.altaComidaaDieta(di, com);
-item.bajaComidaaDieta(37);
+
+        // alta -baja comida / 
+        itemComidasData item = new itemComidasData();
+        item.altaComidaaDieta(di, com);
+        item.bajaComidaaDieta(37);
         System.out.println(item.obtenerComidasporDieta(16));
-        System.out.println("---------------");;
-        
-        
-        
+        System.out.println("---------------");
+
         dietaData d = new dietaData();
         int id;
         id = 15;
         System.out.println(d.buscarDieta(id));
 
-        comidaData comdata= new comidaData();
-        Comida c= new Comida();
+        comidaData comdata = new comidaData();
+        Comida c = new Comida();
         c.setId_comida(23);
         c.setNombre("zza");
         c.setDetalle("Queso y panceta");
@@ -79,11 +76,11 @@ item.bajaComidaaDieta(37);
         comdata.actualizarComida(c);
         comdata.buscarComida(18);
         System.out.println("---------------muestra dietas seleccionadas");
-        pas=new Paciente();
+        pas = new Paciente();
         pas.setId_paciente(19);
         System.out.println(condieta.buscarDietasxPaciente(pas));
         System.out.println(item.obtenerComidasporDieta(19));
-        
+
     }
 
 }
