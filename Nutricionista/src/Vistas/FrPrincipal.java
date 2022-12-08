@@ -36,8 +36,12 @@ public class FrPrincipal extends javax.swing.JFrame {
         MenuPaciente = new javax.swing.JMenu();
         mabmPaciente = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        mspacientesactivos = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         MenuComida = new javax.swing.JMenu();
         mabmComida = new javax.swing.JMenuItem();
+        msComidasActivas = new javax.swing.JMenuItem();
+        msComidasmenoresCalorias = new javax.swing.JMenuItem();
         MenuDieta = new javax.swing.JMenu();
         mabmdieta = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -84,6 +88,22 @@ public class FrPrincipal extends javax.swing.JFrame {
         MenuPaciente.add(mabmPaciente);
         MenuPaciente.add(jSeparator1);
 
+        mspacientesactivos.setText("Mostrar Pacientes");
+        mspacientesactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mspacientesactivosActionPerformed(evt);
+            }
+        });
+        MenuPaciente.add(mspacientesactivos);
+
+        jMenuItem2.setText("Buscar Pacientes por peso");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        MenuPaciente.add(jMenuItem2);
+
         jMenuBar1.add(MenuPaciente);
 
         MenuComida.setText("Comida");
@@ -95,6 +115,22 @@ public class FrPrincipal extends javax.swing.JFrame {
             }
         });
         MenuComida.add(mabmComida);
+
+        msComidasActivas.setText("Buscar Comidas Activas");
+        msComidasActivas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msComidasActivasActionPerformed(evt);
+            }
+        });
+        MenuComida.add(msComidasActivas);
+
+        msComidasmenoresCalorias.setText("Buscar comidas menores a Calorias");
+        msComidasmenoresCalorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msComidasmenoresCaloriasActionPerformed(evt);
+            }
+        });
+        MenuComida.add(msComidasmenoresCalorias);
 
         jMenuBar1.add(MenuComida);
 
@@ -190,7 +226,7 @@ public class FrPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mmsalirActionPerformed
 
     private void mabmComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmComidaActionPerformed
-    FrComida fcomida = new FrComida();
+        FrComida fcomida = new FrComida();
         escritorio.add(fcomida);
         //codigo para centrar ventana
         Dimension tamescritorio = escritorio.getSize();
@@ -202,6 +238,72 @@ public class FrPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(fcomida);        // TODO add your handling code here:
         fcomida.show();
     }//GEN-LAST:event_mabmComidaActionPerformed
+
+    private void mspacientesactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mspacientesactivosActionPerformed
+        FrBuscarPacientes fbp = new FrBuscarPacientes();
+        escritorio.add(fbp);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fbp.getSize();
+        fbp.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+
+        fbp.setVisible(true);
+        escritorio.moveToFront(fbp);        // TODO add your handling code here:
+        fbp.show();        // TODO add your handling code here:
+    }//GEN-LAST:event_mspacientesactivosActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+
+        FrBuscarPacientesKilo fbpk = new FrBuscarPacientesKilo();
+        escritorio.add(fbpk);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fbpk.getSize();
+        fbpk.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+
+        fbpk.setVisible(true);
+        escritorio.moveToFront(fbpk);        // TODO add your handling code here:
+        fbpk.show();        // TODO add your handling code here:
+        
+        
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void msComidasActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msComidasActivasActionPerformed
+    FrBuscarComidasActivas fbca = new FrBuscarComidasActivas();
+        escritorio.add(fbca);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fbca.getSize();
+        fbca.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+
+        fbca.setVisible(true);
+        escritorio.moveToFront(fbca);        // TODO add your handling code here:
+        fbca.show();        // TODO add your handling code here:
+                // TODO add your handling code here:
+    }//GEN-LAST:event_msComidasActivasActionPerformed
+
+    private void msComidasmenoresCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msComidasmenoresCaloriasActionPerformed
+    FrBuscarComidasCalorias fbcc = new FrBuscarComidasCalorias();
+        escritorio.add(fbcc);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fbcc.getSize();
+        fbcc.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+
+        fbcc.setVisible(true);
+        escritorio.moveToFront(fbcc);        // TODO add your handling code here:
+        fbcc.show();        // TODO add your handling code here:
+                // TODO add your handling code here:
+    
+        
+        
+        
+    }//GEN-LAST:event_msComidasmenoresCaloriasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,10 +349,14 @@ public class FrPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem mabmComida;
     private javax.swing.JMenuItem mabmPaciente;
     private javax.swing.JMenuItem mabmdieta;
     private javax.swing.JMenuItem mmsalir;
+    private javax.swing.JMenuItem msComidasActivas;
+    private javax.swing.JMenuItem msComidasmenoresCalorias;
+    private javax.swing.JMenuItem mspacientesactivos;
     // End of variables declaration//GEN-END:variables
 }
