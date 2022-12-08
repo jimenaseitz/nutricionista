@@ -19,20 +19,6 @@ public class FrPrincipal extends javax.swing.JFrame {
     public FrPrincipal() {
         initComponents();
 
-//despues sacar
-        
-        
-        FrDieta fdieta = new FrDieta();
-        escritorio.add(fdieta);
-        //codigo para centrar ventana
-        Dimension tamescritorio = escritorio.getSize();
-        Dimension tamframe = fdieta.getSize();
-        fdieta.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
-        //.------------------
-        fdieta.setVisible(true);
-        escritorio.moveToFront(fdieta);        // TODO add your handling code here:
-        fdieta.show();
-///////
     }
 
     /**
@@ -204,7 +190,17 @@ public class FrPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mmsalirActionPerformed
 
     private void mabmComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mabmComidaActionPerformed
+    FrComida fcomida = new FrComida();
+        escritorio.add(fcomida);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fcomida.getSize();
+        fcomida.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
 
+        fcomida.setVisible(true);
+        escritorio.moveToFront(fcomida);        // TODO add your handling code here:
+        fcomida.show();
     }//GEN-LAST:event_mabmComidaActionPerformed
 
     /**
