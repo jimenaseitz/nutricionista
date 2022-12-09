@@ -6,8 +6,11 @@
 package Vistas;
 
 import Entidades.Paciente;
+import Persistencia.pacienteData;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 
 
@@ -172,6 +175,11 @@ public class FrPaciente extends javax.swing.JInternalFrame {
 
         TxDni.setBackground(new java.awt.Color(255, 255, 255));
         TxDni.setForeground(new java.awt.Color(0, 0, 0));
+        TxDni.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TxDniFocusLost(evt);
+            }
+        });
 
         TxFechaNac.setBackground(new java.awt.Color(255, 255, 255));
         TxFechaNac.setForeground(new java.awt.Color(0, 0, 0));
@@ -199,6 +207,11 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         TxAltura.setForeground(new java.awt.Color(0, 0, 0));
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar");
 
@@ -365,6 +378,7 @@ public class FrPaciente extends javax.swing.JInternalFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         Paciente pa = new Paciente();
+        pacienteData data = new pacienteData();
         pa.setNombre(TxNombre.getText());
         pa.setApellido(TxApellido.getText());
         pa.setDni(Integer.parseInt(TxDni.getText()));
@@ -373,7 +387,29 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pa.setTelefono(Integer.parseInt(TxTelefono.getText()));
         pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
         pa.setAltura(Double.parseDouble(TxAltura.getText()));
+        data.altaPaciente(pa);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        Paciente pa = new Paciente();
+        pacienteData data = new pacienteData();
+        
+        pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
+        TxNombre.setText(pa.getNombre());
+        TxApellido.setText(pa.getApellido());
+        TxFechaNac.;
+        
+        
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TxDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxDniFocusLost
+        // TODO add your handling code here:
+        if (!this.TxDni.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(this, "Ingrese numeros solamente");
+            this.TxDni.requestFocus();
+        }
+    }//GEN-LAST:event_TxDniFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
