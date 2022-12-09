@@ -12,8 +12,6 @@ import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author sistema
@@ -24,7 +22,7 @@ public class FrPaciente extends javax.swing.JInternalFrame {
      * Creates new form FrPaciente
      */
     public FrPaciente() {
-       initComponents();
+        initComponents();
 
     }
 
@@ -214,6 +212,11 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         });
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -223,6 +226,11 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         });
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(btnSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -364,7 +372,7 @@ public class FrPaciente extends javax.swing.JInternalFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-       this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void TxPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxPesoActionPerformed
@@ -394,24 +402,72 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Paciente pa = new Paciente();
         pacienteData data = new pacienteData();
-        
+
         pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
+
         TxNombre.setText(pa.getNombre());
         TxApellido.setText(pa.getApellido());
-        TxFechaNac.;
-        
-        
+        TxDomicilio.setText(pa.getDomicilio());
+        TxFechaNac.setDateFormatString(String.valueOf(pa.getFechaNacimiento()));
+        TxTelefono.setText(String.valueOf(pa.getTelefono()));
+        TxPeso.setText(Double.toString(pa.getPesoActual()));
+        TxAltura.setText(Double.toString(pa.getAltura()));
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void TxDniFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxDniFocusLost
         // TODO add your handling code here:
+
         if (!this.TxDni.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
             JOptionPane.showMessageDialog(this, "Ingrese numeros solamente");
             this.TxDni.requestFocus();
         }
     }//GEN-LAST:event_TxDniFocusLost
 
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        pacienteData data = new pacienteData();
 
+        data.bajaPaciente(Integer.parseInt(TxDni.getText()));
+
+        JOptionPane.showMessageDialog(this, "El paciente fue borrado");
+        LimpiarCampos();
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
+        pacienteData data = new pacienteData();
+        Paciente pa = new Paciente();
+
+        pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
+        if (TxDni.getText() != null && !TxDni.getText().equalsIgnoreCase("")) {
+
+            pa.setNombre(TxNombre.getText());
+            pa.setApellido(TxApellido.getText());
+            pa.setDni(Integer.parseInt(TxDni.getText()));
+            pa.setFechaNacimiento(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(TxFechaNac.getDate())));
+            pa.setDomicilio(TxDomicilio.getText());
+            pa.setTelefono(Integer.parseInt(TxTelefono.getText()));
+            pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
+            pa.setAltura(Double.parseDouble(TxAltura.getText()));
+            data.modificarPaciente(pa);
+
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Por favor ingrese un DNI");
+
+        }
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void LimpiarCampos() {
+        this.TxNombre.setText("");
+        this.TxApellido.setText("");
+        this.TxDni.setText("");
+        this.TxFechaNac.setDate(null);
+        this.TxDomicilio.setText("");
+        this.TxTelefono.setText("");
+        this.TxPeso.setText("");
+        this.TxAltura.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxAltura;
     private javax.swing.JTextField TxApellido;
