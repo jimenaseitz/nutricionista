@@ -49,12 +49,14 @@ public class comidaData {
     }
     
     public void actualizarComida(Comida com){
-        String query = "UPDATE comida set nombre=?, detalle=?, calorias=? where id_comida=?) ";
+        String query = "UPDATE comida set nombre=?, detalle=?, calorias=? where id_comida=? ";
         try{
             PreparedStatement ps = cx.prepareStatement(query);
+            
             ps.setString(1,com.getNombre());
             ps.setString(2,com.getDetalle());
             ps.setInt(3,com.getCalorias());
+            ps.setInt(4,com.getId_comida());
        
             if (ps.executeUpdate() > 0){
                 JOptionPane.showMessageDialog(null, "Los datos fueron actualizados");
@@ -102,17 +104,18 @@ public class comidaData {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                com = new Comida();
+                com.setId_comida(rs.getInt("id_comida"));
                 com.setNombre(rs.getString("nombre"));
                 com.setDetalle(rs.getString("detalle")); 
                 com.setCalorias(rs.getInt("calorias"));          
                
             } else {
-                JOptionPane.showMessageDialog(null, "Paciente no encontrado");
+                JOptionPane.showMessageDialog(null, "Comida no encontrada");
+               
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Problema en 'BuscarPaciente'");
+            JOptionPane.showMessageDialog(null, "Problema en 'BuscarComida'");
         }
         return com;
     }
@@ -134,6 +137,7 @@ public class comidaData {
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Lista O consulta incorrecta, verifique");
+            
         }
         return aux;
 
