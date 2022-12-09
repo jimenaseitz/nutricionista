@@ -8,6 +8,7 @@ package Persistencia;
 import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.Paciente;
+import Entidades.itemComidas;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -26,7 +27,7 @@ public class Nutricionista {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+/*
         dietaData condieta = new dietaData();
         Dieta di = new Dieta();
         ArrayList <Paciente> pacientes = new ArrayList();
@@ -88,7 +89,10 @@ public class Nutricionista {
         pas.setId_paciente(19);
         System.out.println(condieta.buscarDietasxPaciente(pas));
         System.out.println(item.obtenerComidasporDieta(19));
-
+*/
+   itemComidasData itemcom= new itemComidasData();
+        System.out.println(itemcom.obtenerComidasporDietaId(19));     
+   
     }
 
 }

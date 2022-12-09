@@ -18,6 +18,7 @@ public class FrPrincipal extends javax.swing.JFrame {
      */
     public FrPrincipal() {
         initComponents();
+       this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }
 
@@ -63,7 +64,7 @@ public class FrPrincipal extends javax.swing.JFrame {
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 746, Short.MAX_VALUE))
+                .addGap(0, 858, Short.MAX_VALUE))
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

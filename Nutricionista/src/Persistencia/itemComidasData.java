@@ -8,6 +8,7 @@ package Persistencia;
 import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.Paciente;
+import Entidades.itemComidas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,10 +30,10 @@ public class itemComidasData {
 
     }
 
-   public void altaComidaaDieta(Dieta d, Comida c) {
+    public void altaComidaaDieta(Dieta d, Comida c) {
         try {
             //String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
-           String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
+            String sql = "INSERT INTO itemcomidas(id_dieta, id_comida) VALUES (?,?)";
             PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, d.getId_Dieta());
             ps.setInt(2, c.getId_comida());
@@ -43,12 +44,12 @@ public class itemComidasData {
                 JOptionPane.showMessageDialog(null, "la Comida no se ha agregado");
             }
             ResultSet rs = ps.getGeneratedKeys();
-            
+
             if (rs.next()) {
                 int clave = rs.getInt(1);
                 d.setId_Dieta(clave);
             }
-             
+
             ps.close();
         } catch (SQLException ex) {
 
@@ -62,11 +63,10 @@ public class itemComidasData {
             String sql = "DELETE FROM itemcomidas WHERE id_itemcomida=?";
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, id_item);
-            
+
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "Se quitó la comida de la dieta");
-            }
-            else {
+            } else {
                 JOptionPane.showMessageDialog(null, "La comida no existe cargada");
             }
         } catch (SQLException ex) {
@@ -74,7 +74,8 @@ public class itemComidasData {
         }
 
     }
-    
+
+    /*
     public ArrayList <Comida> obtenerComidasporDieta(int iddieta){
         ArrayList <Comida> listaComida = new ArrayList();
         Comida com;
@@ -100,4 +101,38 @@ public class itemComidasData {
         }
         return listaComida;
     }
+   
+     */
+    public ArrayList<itemComidas> obtenerComidasporDietaId(int iddieta) {
+        ArrayList<itemComidas> listaComida = new ArrayList();
+
+        itemComidas com;
+        Comida c;
+
+        try {
+            String sql = "SELECT * FROM itemcomidas, comida WHERE itemcomidas.id_comida= COMIDA.id_comida and itemcomidas.id_dieta=?";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, iddieta);
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                com = new itemComidas();
+                c= new Comida();
+                com.setId_itemcomida(rs.getInt("id_itemcomida"));
+                c.setId_comida(rs.getInt("id_comida"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDetalle(rs.getString("detalle"));
+                c.setCalorias(rs.getInt("calorias"));
+                c.setEstado(rs.getBoolean("estado"));
+                com.setComida(c);
+                listaComida.add(com);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+
+            JOptionPane.showMessageDialog(null, "Error en sentencia ");
+        }
+        return listaComida;
+    }
+
 }
