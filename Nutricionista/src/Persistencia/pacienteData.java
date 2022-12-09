@@ -174,7 +174,7 @@ public class pacienteData {
 
     public ArrayList<Paciente> buscarxkilo(int kilo) {
         //SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
-        Paciente pa ;
+        
         ArrayList<Paciente> pacientes = new ArrayList();
         String sql = "SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>? and `estado` = 1";
         try {
@@ -182,7 +182,7 @@ public class pacienteData {
             ps.setInt(1, kilo);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                pa = new Paciente();
+                Paciente pa = new Paciente();
                 pa.setNombre(rs.getString("nombre"));
                 pa.setApellido(rs.getString("apellido"));
                 pa.setAltura(rs.getDouble("altura"));

@@ -8,6 +8,7 @@ package Vistas;
 import Entidades.Paciente;
 import Persistencia.pacienteData;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -154,6 +155,13 @@ public class FrBuscarPacientes extends javax.swing.JInternalFrame {
         ArrayList <Paciente> lista = new ArrayList();
         Paciente pa = new Paciente();
         pacienteData data = new pacienteData();
+        lista = data.buscarpacientes();
+        DefaultTableModel modelo = (DefaultTableModel) this.JtPacientes.getModel();
+        for (Paciente aux : lista) {
+            
+            
+            
+        }
     
     
     
