@@ -159,6 +159,10 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="TxKilosFocusLost"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TxKilosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBuscar">
       <Properties>
