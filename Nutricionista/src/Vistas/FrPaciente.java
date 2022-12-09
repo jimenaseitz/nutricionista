@@ -5,7 +5,11 @@
  */
 package Vistas;
 
-import java.awt.BorderLayout;
+import Entidades.Paciente;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
+
 
 /**
  *
@@ -50,14 +54,18 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        TxNombre = new javax.swing.JTextField();
+        TxApellido = new javax.swing.JTextField();
+        TxDni = new javax.swing.JTextField();
+        TxFechaNac = new com.toedter.calendar.JDateChooser();
+        TxDomicilio = new javax.swing.JTextField();
+        TxTelefono = new javax.swing.JTextField();
+        TxPeso = new javax.swing.JTextField();
+        TxAltura = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
+        btnGuardar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -110,7 +118,7 @@ public class FrPaciente extends javax.swing.JInternalFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nut.png"))); // NOI18N
 
-        btnSalir.setBackground(new java.awt.Color(255, 0, 0));
+        btnSalir.setBackground(new java.awt.Color(204, 204, 204));
         btnSalir.setForeground(new java.awt.Color(0, 0, 0));
         btnSalir.setText("Salir");
         btnSalir.setBorder(null);
@@ -157,33 +165,51 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Altura : ");
 
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        TxNombre.setBackground(new java.awt.Color(255, 255, 255));
+        TxNombre.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        TxApellido.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        TxDni.setBackground(new java.awt.Color(255, 255, 255));
+        TxDni.setForeground(new java.awt.Color(0, 0, 0));
 
-        jDateChooser1.setBackground(new java.awt.Color(255, 255, 255));
-        jDateChooser1.setForeground(new java.awt.Color(0, 0, 0));
+        TxFechaNac.setBackground(new java.awt.Color(255, 255, 255));
+        TxFechaNac.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
-
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        TxDomicilio.setBackground(new java.awt.Color(255, 255, 255));
+        TxDomicilio.setForeground(new java.awt.Color(0, 0, 0));
+        TxDomicilio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                TxDomicilioActionPerformed(evt);
             }
         });
 
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
+        TxTelefono.setBackground(new java.awt.Color(255, 255, 255));
+        TxTelefono.setForeground(new java.awt.Color(0, 0, 0));
+
+        TxPeso.setBackground(new java.awt.Color(255, 255, 255));
+        TxPeso.setForeground(new java.awt.Color(0, 0, 0));
+        TxPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxPesoActionPerformed(evt);
+            }
+        });
+
+        TxAltura.setBackground(new java.awt.Color(255, 255, 255));
+        TxAltura.setForeground(new java.awt.Color(0, 0, 0));
+
+        btnBuscar.setText("Buscar");
+
+        btnActualizar.setText("Actualizar");
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.setText("Borrar");
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(btnSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -196,14 +222,18 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jDateChooser1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxApellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxDni, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxFechaNac, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxDomicilio, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxTelefono, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxPeso, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(TxAltura, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnActualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(btnBorrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -211,9 +241,17 @@ public class FrPaciente extends javax.swing.JInternalFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 541, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 541, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(btnActualizar)
+                        .addGap(125, 125, 125)
+                        .addComponent(btnGuardar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,11 +265,13 @@ public class FrPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                .addGap(180, 180, 180)
+                    .addComponent(TxNombre)
+                    .addComponent(TxApellido)
+                    .addComponent(TxDni)
+                    .addComponent(TxFechaNac, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBuscar)
+                .addGap(85, 85, 85)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -239,11 +279,13 @@ public class FrPaciente extends javax.swing.JInternalFrame {
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(TxDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnBorrar)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(TxAltura, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(TxPeso, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TxTelefono, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -255,27 +297,28 @@ public class FrPaciente extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                    .addComponent(TxDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar))
+                .addGap(39, 39, 39)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(TxAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxFechaNac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(58, 58, 58)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
@@ -283,6 +326,12 @@ public class FrPaciente extends javax.swing.JInternalFrame {
                         .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnActualizar)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnBorrar))
                         .addContainerGap())))
         );
 
@@ -302,17 +351,45 @@ public class FrPaciente extends javax.swing.JInternalFrame {
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
-       
+       this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void TxPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxPesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_TxPesoActionPerformed
+
+    private void TxDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxDomicilioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxDomicilioActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+        Paciente pa = new Paciente();
+        pa.setNombre(TxNombre.getText());
+        pa.setApellido(TxApellido.getText());
+        pa.setDni(Integer.parseInt(TxDni.getText()));
+        pa.setFechaNacimiento(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(TxFechaNac.getDate())));
+        pa.setDomicilio(TxDomicilio.getText());
+        pa.setTelefono(Integer.parseInt(TxTelefono.getText()));
+        pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
+        pa.setAltura(Double.parseDouble(TxAltura.getText()));
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxAltura;
+    private javax.swing.JTextField TxApellido;
+    private javax.swing.JTextField TxDni;
+    private javax.swing.JTextField TxDomicilio;
+    private com.toedter.calendar.JDateChooser TxFechaNac;
+    private javax.swing.JTextField TxNombre;
+    private javax.swing.JTextField TxPeso;
+    private javax.swing.JTextField TxTelefono;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JFrame jFrame2;
@@ -332,12 +409,5 @@ public class FrPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     // End of variables declaration//GEN-END:variables
 }
