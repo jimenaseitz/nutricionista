@@ -28,7 +28,7 @@ public class pacienteData {
         try {
             String sql = "INSERT INTO `paciente`( `dni`, `apellido`, `nombre`, `domicilio`, `telefono`, `altura`, `pesoActual`, `fechaNacimiento`, `estado`) VALUES (?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = cx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setLong(1, pa.getDni());
+            ps.setInt(1, pa.getDni());
             ps.setString(2, pa.getApellido());
             ps.setString(3, pa.getNombre());
             ps.setString(4, pa.getDomicilio());
@@ -37,9 +37,9 @@ public class pacienteData {
             ps.setDouble(7, pa.getPesoActual());
             ps.setDate(8, java.sql.Date.valueOf(pa.getFechaNacimiento()));
             ps.setBoolean(9, true);
-            ps.close();
+            
             int registro = ps.executeUpdate();
-
+            
             String cartel;
             if (registro > 0) {
                 cartel = "Paciente agregado";
@@ -47,12 +47,14 @@ public class pacienteData {
                 cartel = "No se pudo agregar el paciente";
             }
             JOptionPane.showMessageDialog(null, cartel);
+            ps.close();
         } catch (SQLException ex) {
 
             if (ex.getErrorCode() == 1062) {
                 JOptionPane.showMessageDialog(null, "El paciente ingresado ya existe");
             } else {
-                JOptionPane.showMessageDialog(null, "Error en sentencia ");
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+                System.out.println("En ALtaPaciente el error es :" + ex.getMessage());
             }
 
         }
