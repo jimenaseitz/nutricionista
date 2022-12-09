@@ -36,8 +36,10 @@ public class FrBuscarPacientesKilo extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(55, 97, 140));
+        setClosable(true);
         setTitle("Pacientes por kilo");
 
+        jLabel1.setBackground(new java.awt.Color(55, 97, 140));
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Pacientes segun los Kilos que desean bajar");
@@ -85,6 +87,7 @@ public class FrBuscarPacientesKilo extends javax.swing.JInternalFrame {
         jLabel2.setBackground(new java.awt.Color(55, 97, 140));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nut.png"))); // NOI18N
 
+        jLabel3.setBackground(new java.awt.Color(55, 97, 140));
         jLabel3.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ingrese los kilos :");
@@ -132,8 +135,8 @@ public class FrBuscarPacientesKilo extends javax.swing.JInternalFrame {
                     .addComponent(TxKilos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar))
                 .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
