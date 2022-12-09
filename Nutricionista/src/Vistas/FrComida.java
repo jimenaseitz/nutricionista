@@ -192,19 +192,24 @@ public class FrComida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
-        
+      
        if (this.tIdComida.getText().matches("[0-9]*")) {
     
-            aux = comd.buscarComida(Integer.parseInt(this.tIdComida.getText()));
-            this.tIdComida.setText(String.valueOf(aux.getId_comida()));
-            this.tNombre.setText(aux.getNombre());
-            this.tDetalle.setText(String.valueOf(aux.getDetalle()));
-            this.tCalorias.setText(String.valueOf(aux.getCalorias()));
-            
+            aux = comd.buscarComida(Integer.parseInt(this.tIdComida.getText()));  
+            if(aux.getId_comida()==0){
+                limpiar();
+            }else{
+                this.tIdComida.setText(String.valueOf(aux.getId_comida()));
+                this.tNombre.setText(aux.getNombre());
+                this.tDetalle.setText(String.valueOf(aux.getDetalle()));
+                this.tCalorias.setText(String.valueOf(aux.getCalorias()));   
+            }
 
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar el código");
+           
         }
+       
     }//GEN-LAST:event_BBuscarActionPerformed
 
     private void BNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BNuevoActionPerformed
@@ -223,6 +228,7 @@ public class FrComida extends javax.swing.JInternalFrame {
             aux.setCalorias(Integer.parseInt(this.tCalorias.getText()));
             aux.setEstado(true);
             aux.setNombre(this.tNombre.getText());
+            aux.setDetalle(this.tDetalle.getText());
             comd.actualizarComida(aux);
         } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar el código");
