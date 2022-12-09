@@ -8,6 +8,7 @@ package Vistas;
 import Entidades.Paciente;
 import Persistencia.pacienteData;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -99,6 +100,16 @@ public class FrBuscarPacientesKilo extends javax.swing.JInternalFrame {
 
         TxKilos.setBackground(new java.awt.Color(255, 255, 255));
         TxKilos.setForeground(new java.awt.Color(0, 0, 0));
+        TxKilos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                TxKilosFocusLost(evt);
+            }
+        });
+        TxKilos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TxKilosActionPerformed(evt);
+            }
+        });
 
         btnBuscar.setBackground(new java.awt.Color(204, 204, 204));
         btnBuscar.setForeground(new java.awt.Color(0, 0, 0));
@@ -160,6 +171,18 @@ public class FrBuscarPacientesKilo extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         armarTabla();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void TxKilosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxKilosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TxKilosActionPerformed
+
+    private void TxKilosFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_TxKilosFocusLost
+        // TODO add your handling code here:
+                if (!this.TxKilos.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+            JOptionPane.showMessageDialog(this, "Ingrese numeros solamente");
+            this.TxKilos.requestFocus();
+        }
+    }//GEN-LAST:event_TxKilosFocusLost
 
     
     private void armarTabla() {
