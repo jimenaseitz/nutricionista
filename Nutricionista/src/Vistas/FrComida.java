@@ -240,7 +240,7 @@ public class FrComida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BSalirActionPerformed
 
     private void BBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBorrarActionPerformed
-        if (!this.tIdComida.getText().matches("[+-]?\\d*(\\.\\d+)?")) {
+        if (this.tIdComida.getText().matches("[0-9]*")) {
             comd.bajaComida(Integer.parseInt(this.tIdComida.getText()));
         }
     }//GEN-LAST:event_BBorrarActionPerformed
