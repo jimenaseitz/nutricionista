@@ -138,5 +138,29 @@ public class comidaData {
         return aux;
 
     }
+     public ArrayList<Comida> buscaComidasPorCalorias(int calorias) {
+        ArrayList<Comida> aux = new ArrayList();
+        Comida com;
+        String sql = "Select * from comida where calorias < ? and estado=1 ORDER BY nombre ASC";
+        
+        try {
+            PreparedStatement ps = cx.prepareStatement(sql);
+            ps.setInt(1, calorias);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                com = new Comida();
+                com.setId_comida(rs.getInt("id_comida"));
+                com.setNombre(rs.getString("nombre"));
+                com.setDetalle(rs.getString("detalle"));
+                com.setCalorias(rs.getInt("calorias"));
+                aux.add(com);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Lista O consulta incorrecta, verifique");
+        }
+        return aux;
+
+    }
     }
 

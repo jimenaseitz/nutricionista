@@ -5,15 +5,22 @@
  */
 package Vistas;
 
+import Entidades.Comida;
+import Persistencia.comidaData;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sistema
  */
 public class FrBuscarComidasCalorias extends javax.swing.JInternalFrame {
-
-    /**
-     * Creates new form FrBuscarComidasCalorias
-     */
+    private ArrayList <Comida> listadocomida;
+    comidaData comd =new comidaData();
+    Comida aux = new Comida();
+    
+    
     public FrBuscarComidasCalorias() {
         initComponents();
     }
@@ -27,23 +34,136 @@ public class FrBuscarComidasCalorias extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        BBuscar = new javax.swing.JButton();
+        tCalorias = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        GirldComidas = new javax.swing.JTable();
+        BSalir = new javax.swing.JButton();
+
         setTitle("Comidas Calorias");
+
+        jLabel1.setText("COMIDAS CON CALORIAS MENORES A :");
+
+        jLabel2.setText("Calorias");
+
+        BBuscar.setText("Buscar");
+        BBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBuscarActionPerformed(evt);
+            }
+        });
+
+        GirldComidas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre", "Calorias"
+            }
+        ));
+        jScrollPane1.setViewportView(GirldComidas);
+
+        BSalir.setText("Salir");
+        BSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(tCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(BBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)))
+                .addGap(97, 97, 97))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BSalir)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(BBuscar)
+                    .addComponent(tCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(BSalir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBuscarActionPerformed
+        
+        
+        if (this.tCalorias.getText().matches("[0-9]*")) {
+             
+            armarGrillaComidas();
+
+        } else {
+            JOptionPane.showMessageDialog(this, "los datos ingresados no son validos");
+        }
+    }//GEN-LAST:event_BBuscarActionPerformed
+
+    private void BSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BSalirActionPerformed
+        this.setVisible(false); 
+    }//GEN-LAST:event_BSalirActionPerformed
+ private void armarGrillaComidas() {
+
+        ArrayList<Comida> templc = new ArrayList();
+        templc = comd.buscaComidasPorCalorias(Integer.parseInt(this.tCalorias.getText()));
+        String datos[] = new String[3];
+        DefaultTableModel modeloc = (DefaultTableModel) this.GirldComidas.getModel();
+        modeloc.setNumRows(0);
+        
+        for (Comida aux : templc) {
+            datos[0] = aux.getId_comida() + "";
+            datos[1] = aux.getNombre();
+            datos[2] = aux.getCalorias() + "";
+            modeloc.addRow(datos);
+ 
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BBuscar;
+    private javax.swing.JButton BSalir;
+    private javax.swing.JTable GirldComidas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField tCalorias;
     // End of variables declaration//GEN-END:variables
 }
