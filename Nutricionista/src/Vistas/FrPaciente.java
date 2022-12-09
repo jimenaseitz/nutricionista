@@ -385,10 +385,10 @@ public class FrPaciente extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (TxNombre.getText() != "" || TxApellido.getText() != "" || TxDomicilio.getText() != "" || TxDni.getText() != "") {
+        if (TxNombre.getText() != "" || TxApellido.getText() != "" || TxDomicilio.getText() != "" || TxDni.getText() != "" ||
+                TxTelefono.getText() != "" || TxAltura.getText() != "" || TxPeso.getText() != "") {
             
-        }
-        Paciente pa = new Paciente();
+            Paciente pa = new Paciente();
         pacienteData data = new pacienteData();
         pa.setNombre(TxNombre.getText());
         pa.setApellido(TxApellido.getText());
@@ -399,8 +399,15 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
         pa.setAltura(Double.parseDouble(TxAltura.getText()));
         data.altaPaciente(pa);
-        
         LimpiarCampos();
+        }else{
+        
+            JOptionPane.showMessageDialog(this, "Hay campos vacios, por favor complete todos los campos");
+        
+        }
+        
+        
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
