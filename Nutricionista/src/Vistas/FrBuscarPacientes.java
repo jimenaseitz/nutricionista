@@ -127,18 +127,18 @@ public class FrBuscarPacientes extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(421, 421, 421)
                         .addComponent(jButton1)))
-                .addContainerGap(341, Short.MAX_VALUE))
+                .addContainerGap(361, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -148,23 +148,30 @@ public class FrBuscarPacientes extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        armarTabla();
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    private void armarTabla(){
-        
-        ArrayList <Paciente> lista = new ArrayList();
+
+    private void armarTabla() {
+
+        ArrayList<Paciente> lista = new ArrayList();
         Paciente pa = new Paciente();
         pacienteData data = new pacienteData();
         lista = data.buscarpacientes();
+        String columnas[] = new String[8];
         DefaultTableModel modelo = (DefaultTableModel) this.JtPacientes.getModel();
+        modelo.setNumRows(0);
         for (Paciente aux : lista) {
-            
-            
-            
+            columnas[0] = aux.getNombre() + "";
+            columnas[1] = aux.getApellido()+ "";
+            columnas[2] = aux.getDni() + "";
+            columnas[3] = aux.getFechaNacimiento()+ "";
+            columnas[4] = aux.getDomicilio()+ "";
+            columnas[5] = aux.getTelefono()+ "";
+            columnas[6] = aux.getPesoActual()+ "";
+            columnas[7] = aux.getAltura()+ "";
+            modelo.addRow(columnas);
         }
-    
-    
-    
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
