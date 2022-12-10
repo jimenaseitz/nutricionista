@@ -45,7 +45,7 @@ public class Nutricionista {
         System.out.println("----------------------------------------");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate inputAdDate = LocalDate.parse("2020-12-12", formatter);
-        di.setInicioDieta(inputAdDate);
+        
         inputAdDate = LocalDate.parse("2020-12-30", formatter).plusDays(7);
         di.setFinDieta(inputAdDate);
         di.setPaciente(pas);
