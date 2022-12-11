@@ -369,6 +369,11 @@ public class FrDieta extends javax.swing.JInternalFrame {
                 txPesoBuscadoFocusLost(evt);
             }
         });
+        txPesoBuscado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txPesoBuscadoActionPerformed(evt);
+            }
+        });
 
         label1.setText("Peso Buscado");
 
@@ -572,8 +577,7 @@ public class FrDieta extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(jLabel1)
@@ -582,9 +586,8 @@ public class FrDieta extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
                         .addGap(11, 11, 11)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(35, 35, 35)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(35, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAltaDieta)
                     .addComponent(bModificarDieta)
@@ -923,6 +926,10 @@ public class FrDieta extends javax.swing.JInternalFrame {
         }        // TODO add your handling code here:
 
     }//GEN-LAST:event_txPesoBuscadoFocusLost
+
+    private void txPesoBuscadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesoBuscadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txPesoBuscadoActionPerformed
 
     private void armarGrillaDieta() {
         ArrayList<Dieta> templm = new ArrayList();
