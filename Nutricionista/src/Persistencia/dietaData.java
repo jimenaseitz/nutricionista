@@ -181,7 +181,7 @@ public ArrayList <Dieta> buscarDietasActivas(){
         ArrayList<Dieta> listado = new ArrayList();
         pa=new pacienteData();
         try {
-            String sql = "SELECT * FROM dieta, paciente WHERE dieta.id_paciente=paciente.id_paciente and dieta.findieta<=CURRENT_DATE ORDER BY iniciodieta DESC";
+            String sql = "SELECT * FROM dieta, paciente WHERE dieta.id_paciente=paciente.id_paciente and dieta.findieta>=CURRENT_DATE ORDER BY iniciodieta DESC";
             PreparedStatement ps = cx.prepareStatement(sql);
             
             ResultSet rs = ps.executeQuery();

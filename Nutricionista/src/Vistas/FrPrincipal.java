@@ -18,7 +18,7 @@ public class FrPrincipal extends javax.swing.JFrame {
      */
     public FrPrincipal() {
         initComponents();
-       this.setExtendedState(this.MAXIMIZED_BOTH);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }
 
@@ -45,6 +45,7 @@ public class FrPrincipal extends javax.swing.JFrame {
         msComidasmenoresCalorias = new javax.swing.JMenuItem();
         MenuDieta = new javax.swing.JMenu();
         mabmdieta = new javax.swing.JMenuItem();
+        msBscarDietasActivas = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         mmsalir = new javax.swing.JMenuItem();
 
@@ -151,6 +152,14 @@ public class FrPrincipal extends javax.swing.JFrame {
             }
         });
         MenuDieta.add(mabmdieta);
+
+        msBscarDietasActivas.setText("Consulta Dietas Activas");
+        msBscarDietasActivas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msBscarDietasActivasActionPerformed(evt);
+            }
+        });
+        MenuDieta.add(msBscarDietasActivas);
 
         jMenuBar1.add(MenuDieta);
 
@@ -270,13 +279,12 @@ public class FrPrincipal extends javax.swing.JFrame {
         fbpk.setVisible(true);
         escritorio.moveToFront(fbpk);        // TODO add your handling code here:
         fbpk.show();        // TODO add your handling code here:
-        
-        
-        
+
+
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void msComidasActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msComidasActivasActionPerformed
-    FrBuscarComidasActivas fbca = new FrBuscarComidasActivas();
+        FrBuscarComidasActivas fbca = new FrBuscarComidasActivas();
         escritorio.add(fbca);
         //codigo para centrar ventana
         Dimension tamescritorio = escritorio.getSize();
@@ -287,11 +295,11 @@ public class FrPrincipal extends javax.swing.JFrame {
         fbca.setVisible(true);
         escritorio.moveToFront(fbca);        // TODO add your handling code here:
         fbca.show();        // TODO add your handling code here:
-                // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_msComidasActivasActionPerformed
 
     private void msComidasmenoresCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msComidasmenoresCaloriasActionPerformed
-    FrBuscarComidasCalorias fbcc = new FrBuscarComidasCalorias();
+        FrBuscarComidasCalorias fbcc = new FrBuscarComidasCalorias();
         escritorio.add(fbcc);
         //codigo para centrar ventana
         Dimension tamescritorio = escritorio.getSize();
@@ -302,12 +310,26 @@ public class FrPrincipal extends javax.swing.JFrame {
         fbcc.setVisible(true);
         escritorio.moveToFront(fbcc);        // TODO add your handling code here:
         fbcc.show();        // TODO add your handling code here:
-                // TODO add your handling code here:
-    
-        
-        
-        
+        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_msComidasmenoresCaloriasActionPerformed
+
+    private void msBscarDietasActivasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msBscarDietasActivasActionPerformed
+
+        FrBuscarDietasActivas fbda = new FrBuscarDietasActivas();
+        escritorio.add(fbda);
+        //codigo para centrar ventana
+        Dimension tamescritorio = escritorio.getSize();
+        Dimension tamframe = fbda.getSize();
+        fbda.setLocation((tamescritorio.width - tamframe.width) / 2, (tamescritorio.height - tamframe.height) / 2);
+        //.------------------
+        fbda.setVisible(true);
+        escritorio.moveToFront(fbda);        // TODO add your handling code here:
+        fbda.show();
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_msBscarDietasActivasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,6 +381,7 @@ public class FrPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mabmPaciente;
     private javax.swing.JMenuItem mabmdieta;
     private javax.swing.JMenuItem mmsalir;
+    private javax.swing.JMenuItem msBscarDietasActivas;
     private javax.swing.JMenuItem msComidasActivas;
     private javax.swing.JMenuItem msComidasmenoresCalorias;
     private javax.swing.JMenuItem mspacientesactivos;
