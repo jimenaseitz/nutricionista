@@ -154,7 +154,7 @@ public class dietaData {
         ArrayList<Dieta> listado = new ArrayList();
         pa=new pacienteData();
         try {
-            String sql = "select * from dieta where id_paciente=? order by iniciodieta";
+            String sql = "select * from dieta where id_paciente=? order by iniciodieta Desc";
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, pas.getId_paciente());
             ResultSet rs = ps.executeQuery();
@@ -176,4 +176,31 @@ public class dietaData {
         }
         return listado;
     }
+public ArrayList <Dieta> buscarDietasActivas(){
+          di = new Dieta();
+        ArrayList<Dieta> listado = new ArrayList();
+        pa=new pacienteData();
+        try {
+            String sql = "SELECT * FROM dieta, paciente WHERE dieta.id_paciente=paciente.id_paciente and dieta.findieta<=CURRENT_DATE ORDER BY iniciodieta DESC";
+            PreparedStatement ps = cx.prepareStatement(sql);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                di=new Dieta();
+                di.setId_Dieta(rs.getInt("id_dieta"));
+                di.setPaciente(pa.buscarPacientexId(rs.getInt("id_paciente")));
+                di.setInicioDieta(rs.getDate("iniciodieta").toLocalDate());
+                di.setFinDieta(rs.getDate("findieta").toLocalDate());
+                di.setPesoBuscado(rs.getDouble("pesoBuscado"));
+                di.setLimiteCalorico(rs.getInt("limiteCalorico"));
+                di.setPesoInicial(rs.getDouble("pesoinicial"));
+                listado.add(di);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error en sentencia");
+        }
+        return listado;  
+}
 }

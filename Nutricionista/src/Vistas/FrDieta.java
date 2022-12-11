@@ -13,6 +13,7 @@ import Persistencia.comidaData;
 import Persistencia.dietaData;
 import Persistencia.itemComidasData;
 import Persistencia.pacienteData;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -937,8 +938,9 @@ public class FrDieta extends javax.swing.JInternalFrame {
             datos[4] = aux.getPesoInicial() + "";
             datos[5] = aux.getLimiteCalorico() + "";
             modelo.addRow(datos);
-
+            
         }
+     
 
     }
 
@@ -1003,4 +1005,8 @@ public class FrDieta extends javax.swing.JInternalFrame {
     private java.awt.TextField txPesoBuscado;
     private javax.swing.JTextPane txtSumacalComidas;
     // End of variables declaration//GEN-END:variables
+
+    private void setBackGround(Color YELLOW) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

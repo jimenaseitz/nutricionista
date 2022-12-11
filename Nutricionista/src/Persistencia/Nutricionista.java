@@ -93,9 +93,12 @@ public class Nutricionista {
 
    itemComidasData itemcom= new itemComidasData();
         System.out.println(itemcom.obtenerComidasporDietaId(19));     
+
+dietaData dd = new dietaData();
+        System.out.println(dd.buscarDietasActivas());
 */
-  FrPrincipal princ = new FrPrincipal();
-        princ.setVisible(true);
+FrPrincipal princ = new FrPrincipal();
+princ.setVisible(true);
     }
 
 }
