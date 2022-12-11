@@ -154,7 +154,7 @@ public class dietaData {
         ArrayList<Dieta> listado = new ArrayList();
         pa=new pacienteData();
         try {
-            String sql = "select * from dieta where id_paciente=?";
+            String sql = "select * from dieta where id_paciente=? order by iniciodieta";
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, pas.getId_paciente());
             ResultSet rs = ps.executeQuery();

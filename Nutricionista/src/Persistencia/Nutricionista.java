@@ -9,6 +9,7 @@ import Entidades.Comida;
 import Entidades.Dieta;
 import Entidades.Paciente;
 import Entidades.itemComidas;
+import Vistas.FrPrincipal;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -89,10 +90,12 @@ public class Nutricionista {
         pas.setId_paciente(19);
         System.out.println(condieta.buscarDietasxPaciente(pas));
         System.out.println(item.obtenerComidasporDieta(19));
-*/
+
    itemComidasData itemcom= new itemComidasData();
         System.out.println(itemcom.obtenerComidasporDietaId(19));     
-   
+*/
+  FrPrincipal princ = new FrPrincipal();
+        princ.setVisible(true);
     }
 
 }
