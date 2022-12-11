@@ -450,9 +450,9 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pacienteData data = new pacienteData();
         Paciente pa = new Paciente();
 
-        pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
-        if (TxDni.getText() != null && !TxDni.getText().equalsIgnoreCase("")) {
-
+        try{
+        
+            pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
             pa.setNombre(TxNombre.getText());
             pa.setApellido(TxApellido.getText());
             pa.setDni(Integer.parseInt(TxDni.getText()));
@@ -462,12 +462,15 @@ public class FrPaciente extends javax.swing.JInternalFrame {
             pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
             pa.setAltura(Double.parseDouble(TxAltura.getText()));
             data.modificarPaciente(pa);
+            }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            }
 
-        } else {
+        
+            
+            
 
-            JOptionPane.showMessageDialog(this, "Por favor ingrese un DNI");
-
-        }
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void LimpiarCampos() {

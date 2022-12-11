@@ -140,7 +140,7 @@ public class pacienteData {
     public void modificarPaciente(Paciente pa) {
         //UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',
         //`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?' WHERE estado = 1;
-        String sql = "UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?'WHERE estado = 1;";
+        String sql = "UPDATE `paciente` SET `dni`=?,`apellido`=?,`nombre`=?,`domicilio`=?,`telefono`=?,`altura`=?,`pesoActual`=?,`fechaNacimiento`=?WHERE estado = 1;";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setLong(1, pa.getDni());
@@ -159,13 +159,13 @@ public class pacienteData {
             ps.close();
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1062) {
-                JOptionPane.showMessageDialog(null, "El paciente ya tiene esos datos - verifique");
+                JOptionPane.showMessageDialog(null, "El paciente ya tiene esos datos - verifique " + ex.getMessage());
             } else {
                 if (ex.getErrorCode() == 1452) {
                     JOptionPane.showMessageDialog(null, "El paciente no existe");
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error en sentencia ");
+                    JOptionPane.showMessageDialog(null, "Error en sentencia " + ex.getMessage());
                 }
             }
         }
