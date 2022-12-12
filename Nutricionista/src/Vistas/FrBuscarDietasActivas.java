@@ -32,7 +32,7 @@ public class FrBuscarDietasActivas extends javax.swing.JInternalFrame {
             datos[3] = aux.getInicioDieta().toString();
             datos[4] = aux.getFinDieta().toString();
             datos[5] = aux.getPesoInicial() + "";
-            datos[6] = aux.getPesoInicial() + "";
+            datos[6] = aux.getPesoBuscado() + "";
             datos[7] = aux.getLimiteCalorico() + "";
             datos[8] = aux.getPaciente().getTelefono()+"";
             modelo.addRow(datos);
