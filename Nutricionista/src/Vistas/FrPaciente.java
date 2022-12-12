@@ -442,9 +442,7 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pacienteData data = new pacienteData();
 
         data.bajaPaciente(Integer.parseInt(TxDni.getText()));
-
-        JOptionPane.showMessageDialog(this, "El paciente fue borrado");
-        LimpiarCampos();
+            LimpiarCampos();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
