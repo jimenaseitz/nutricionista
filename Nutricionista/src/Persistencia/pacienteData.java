@@ -178,7 +178,7 @@ public class pacienteData {
         //SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>x;        
         
         ArrayList<Paciente> pacientes = new ArrayList();
-        String sql = "SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and (paciente.pesoActual-dieta.pesoBuscado)>? and `estado` = 1";
+        String sql = "SELECT * FROM paciente, dieta WHERE paciente.id_paciente=dieta.id_paciente and abs(paciente.pesoActual-dieta.pesoBuscado)>? and `estado` = 1";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, kilo);
