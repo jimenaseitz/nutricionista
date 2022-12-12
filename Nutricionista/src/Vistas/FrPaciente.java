@@ -9,6 +9,7 @@ import Entidades.Paciente;
 import Persistencia.pacienteData;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -416,11 +417,12 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pacienteData data = new pacienteData();
 
         pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
-
+        LocalDate lc = pa.getFechaNacimiento();
+        java.util.Date date = Date.from(lc.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        TxFechaNac.setDate(date);
         TxNombre.setText(pa.getNombre());
         TxApellido.setText(pa.getApellido());
         TxDomicilio.setText(pa.getDomicilio());
-        TxFechaNac.setDateFormatString(String.valueOf(pa.getFechaNacimiento()));
         TxTelefono.setText(String.valueOf(pa.getTelefono()));
         TxPeso.setText(Double.toString(pa.getPesoActual()));
         TxAltura.setText(Double.toString(pa.getAltura()));
