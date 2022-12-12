@@ -386,29 +386,28 @@ public class FrPaciente extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
-        if (TxNombre.getText() != "" || TxApellido.getText() != "" || TxDomicilio.getText() != "" || TxDni.getText() != "" ||
-                TxTelefono.getText() != "" || TxAltura.getText() != "" || TxPeso.getText() != "") {
-            
+        if (TxNombre.getText() != "" || TxApellido.getText() != "" || TxDomicilio.getText() != "" || TxDni.getText() != ""
+                || TxTelefono.getText() != "" || TxAltura.getText() != "" || TxPeso.getText() != "") {
+
             Paciente pa = new Paciente();
-        pacienteData data = new pacienteData();
-        pa.setNombre(TxNombre.getText());
-        pa.setApellido(TxApellido.getText());
-        pa.setDni(Integer.parseInt(TxDni.getText()));
-        pa.setFechaNacimiento(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(TxFechaNac.getDate())));
-        pa.setDomicilio(TxDomicilio.getText());
-        pa.setTelefono(Integer.parseInt(TxTelefono.getText()));
-        pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
-        pa.setAltura(Double.parseDouble(TxAltura.getText()));
-        data.altaPaciente(pa);
-        LimpiarCampos();
-        }else{
-        
+            pacienteData data = new pacienteData();
+            pa.setNombre(TxNombre.getText());
+            pa.setApellido(TxApellido.getText());
+            pa.setDni(Integer.parseInt(TxDni.getText()));
+            pa.setFechaNacimiento(LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(TxFechaNac.getDate())));
+            pa.setDomicilio(TxDomicilio.getText());
+            pa.setTelefono(Integer.parseInt(TxTelefono.getText()));
+            pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
+            pa.setAltura(Double.parseDouble(TxAltura.getText()));
+            data.altaPaciente(pa);
+            LimpiarCampos();
+        } else {
+
             JOptionPane.showMessageDialog(this, "Hay campos vacios, por favor complete todos los campos");
-        
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -442,7 +441,7 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pacienteData data = new pacienteData();
 
         data.bajaPaciente(Integer.parseInt(TxDni.getText()));
-            LimpiarCampos();
+        LimpiarCampos();
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -450,8 +449,8 @@ public class FrPaciente extends javax.swing.JInternalFrame {
         pacienteData data = new pacienteData();
         Paciente pa = new Paciente();
 
-        try{
-        
+        try {
+
             pa = data.buscarPacientexDNI(Integer.parseInt(TxDni.getText()));
             pa.setNombre(TxNombre.getText());
             pa.setApellido(TxApellido.getText());
@@ -462,15 +461,11 @@ public class FrPaciente extends javax.swing.JInternalFrame {
             pa.setPesoActual(Double.parseDouble(TxPeso.getText()));
             pa.setAltura(Double.parseDouble(TxAltura.getText()));
             data.modificarPaciente(pa);
-            }catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
-            }
+        }
 
-        
-            
-            
 
-        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void LimpiarCampos() {
