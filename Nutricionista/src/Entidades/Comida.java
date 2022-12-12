@@ -69,7 +69,7 @@ public class Comida {
 
     @Override
     public String toString() {
-        return "idComida= " + id_comida + "nombre= " + nombre + "Calorias=" + Calorias ;
+        return "Codigo= " + id_comida + "; Nombre= " + nombre + "; Calorias= " + Calorias ;
     }
     
     
