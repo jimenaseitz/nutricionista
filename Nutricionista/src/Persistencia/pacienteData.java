@@ -62,7 +62,7 @@ public class pacienteData {
 
     public Paciente buscarPacientexDNI(int dni) {
         Paciente pa = new Paciente();
-        String sql = "SELECT * FROM `paciente` WHERE `dni` = ?";
+        String sql = "SELECT * FROM `paciente` WHERE `dni` = ? and estado=true";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, dni);
