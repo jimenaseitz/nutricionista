@@ -141,17 +141,18 @@ public class pacienteData {
     public void modificarPaciente(Paciente pa) {
         //UPDATE `paciente` SET `dni`='?',`apellido`='?',`nombre`='?',
         //`domicilio`='?',`telefono`='?',`altura`='?',`pesoActual`='?',`fechaNacimiento`='?' WHERE estado = 1;
-        String sql = "UPDATE `paciente` SET `dni`=?,`apellido`=?,`nombre`=?,`domicilio`=?,`telefono`=?,`altura`=?,`pesoActual`=?,`fechaNacimiento`=?WHERE estado = 1;";
+        String sql = "UPDATE `paciente` SET `apellido`=?,`nombre`=?,`domicilio`=?,`telefono`=?,`altura`=?,`pesoActual`=?,`fechaNacimiento`=?WHERE estado = 1 and `dni` = ?;";
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
-            ps.setLong(1, pa.getDni());
-            ps.setString(2, pa.getApellido());
-            ps.setString(3, pa.getNombre());
-            ps.setString(4, pa.getDomicilio());
-            ps.setInt(5, pa.getTelefono());
-            ps.setDouble(6, pa.getAltura());
-            ps.setDouble(7, pa.getPesoActual());
-            ps.setDate(8, java.sql.Date.valueOf(pa.getFechaNacimiento()));
+            
+            ps.setString(1, pa.getApellido());
+            ps.setString(2, pa.getNombre());
+            ps.setString(3, pa.getDomicilio());
+            ps.setInt(4, pa.getTelefono());
+            ps.setDouble(5, pa.getAltura());
+            ps.setDouble(6, pa.getPesoActual());
+            ps.setDate(7, java.sql.Date.valueOf(pa.getFechaNacimiento()));
+            ps.setLong(8, pa.getDni());
             if (ps.executeUpdate() > 0) {
                 JOptionPane.showMessageDialog(null, "DATOS ACTUALIZADOS");
             } else {
