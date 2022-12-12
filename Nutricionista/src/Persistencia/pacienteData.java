@@ -121,7 +121,8 @@ public class pacienteData {
     }
 
     public void bajaPaciente(int dni) {
-        String sql = "UPDATE `paciente` SET estado=false where ?";
+        String sql = "UPDATE paciente SET estado=false where dni=?";
+        
         try {
             PreparedStatement ps = cx.prepareStatement(sql);
             ps.setInt(1, dni);

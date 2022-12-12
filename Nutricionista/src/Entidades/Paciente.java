@@ -123,7 +123,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente\n" + "nombre= " + nombre + "\n apellido= " + apellido + "\n dni= " + dni +"\n id_Paciente= " + id_paciente ;
+        return "Codigo= " + id_paciente  + " Apellido= " + apellido + " DNI= " + dni +" Nombre= " + nombre;
     }
     
     }
